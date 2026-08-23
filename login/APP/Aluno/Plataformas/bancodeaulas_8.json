@@ -1,0 +1,45 @@
+﻿{
+ "materias": {
+   "matematica": {
+     "3ºBimestre": [
+       {"id":1
+        "titulo": "Explorando a equivalência de áreas de figuras planas"
+        "explicacao_1": ""
+        "questao_1_1": ""
+        "opções":{ 
+         "a_1": ""
+         "b_1": ""
+         "c_1": ""
+         "d_1": ""
+           },	
+        "Reposta_1_1":"a"
+         },
+          {"id":"2"
+        "titulo": ""
+        "questao_1_2": ""
+        "opções":{ 
+         "a": ""
+         "b": ""
+         "c": ""
+         "d": ""
+           },
+        "Reposta_1_2":""
+         }, 
+            ]
+              }
+                }
+         "Lígua Portuguesa":{
+           "3ºBimestre": [
+        {"id":"1-pt"
+        "titulo": ""
+        "questao_1_2": ""
+        "opções":{ 
+         "a1-pt": ""
+         "b1-pt": ""
+         "c1-pt": ""
+         "d1-pt": ""
+           },
+        "Reposta1-pt":""
+
+            ]
+             } 
