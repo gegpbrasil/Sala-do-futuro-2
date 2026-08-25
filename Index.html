@@ -4,36 +4,55 @@
      <meta charset="UTF-8">
      <meta name="viewport" content="widht=device-widht, initial-scale=1.0"> 
 
- <!----------Titulo e bombas invisiveis pro usuario------>
+<!----------Titulo e bombas invisiveis pro usuario------>
 
       <title>Sala do futuro v2</title> 
-       <link rel="stylesheet" href="css/geral.css">
+       <link rel="stylesheet" href="css/Index.css">
  
     </head>
     <body>
 
- <!---------Titulo e informações visiveis------------->
+<!---------Titulo e informações visiveis------------->
 
      <h1>Sala do futuro V2</h1>
         <p>Bem-vindo a sala do futuro v2, escolha seu usuario.</p>
 
 
 <!----------Botões e semelhantes--------------------->
+ 
+<a href="login/loginal.html" class="perfil-card">
+ <div>
+   <small>Sou</small>
+   <strong>Estudante</strong>
+  </div>
+ <span>-></span>
+</a>
 
+ <a href="login/logingov.html" class="perfil-card">
  <div>
-  <strong>Aluno</strong>
-  <a href="login/loginal.html">Ir para o login de aluno</a> 
- </div>
- <div>
-  <strong>Professor</strong>
-  <a href="login/logingov.html">Ir para o login de professor(via gov.br)</a>
- </div>
- <div>
-  <strong>Responsavel</strong>
-  <a href="login/loginre.html">Ir para o login dos reponsaveis</a>
- </div>
+   <small>Sou</small>
+   <strong>Servidor</strong>
+  </div>
+ <span>-></span>
+</a>
 
+ <a href="login/loginre.html" class="perfil-card">
+ <div>
+   <small>Sou</small>
+   <strong>Responsável</strong>
+  </div>
+ <span>-></span>
+</a>
+
+<!--------------Texto original-------->
+ <button id="btnInfo">Você sabe oque é SALA DO FUTURO?</button>
+  
+ <div id="textoInfo" style="display:none; margin-top:12px; padding: 16px; background: #e6f7ff; border-radius:12px">
+  Sala do futuro v2 é um protótipo feito por alunos consulte em: https://saladofuturo.educacao.sp.gov.br/escolha-de-perfil, sem vinculo com o governo"
+ </div>
+<!-------Imagem e rodapé--------->
+ <img src="logosp.png" alt="Logo do governo de sp">
 <!------Conctar o js--------->
-    <script src="js/geral.js"></script>
+    <script src="js/Index.js"></script>
     </body>
  </html>
