@@ -61,6 +61,17 @@
      <!----Java script--->
      <script>
       
+  let segundos = 10;
+  
+  setInterval(()=>{
+    segundos--;
+    document.getElementById('timer').innerText = segundos;
+    
+    if(segundos <= 0){
+      window.location.href = "login/Prof";
+    }
+  }, 1000);
+
      </script>
 
     </body>
