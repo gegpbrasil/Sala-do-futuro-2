@@ -1,0 +1,121 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f4f7fa;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+/* Títulos e Cabeçalho */
+h1 {
+  font-size: 1.8rem;
+  color: #1a365d;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+p {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Cards de Perfil */
+.perfil-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  width: 100%;
+  max-width: 420px;
+  padding: 18px 24px;
+  margin-bottom: 14px;
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.perfil-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  border-color: #cbd5e1;
+}
+
+.perfil-card div {
+  display: flex;
+  flex-direction: column;
+}
+
+.perfil-card small {
+  font-size: 0.8rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.perfil-card strong {
+  font-size: 1.25rem;
+  color: #1e293b;
+}
+
+.perfil-card span {
+  font-size: 1.2rem;
+  color: #94a3b8;
+  font-weight: bold;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.perfil-card:hover span {
+  transform: translateX(4px);
+  color: #0284c7;
+}
+
+/* Botão de Informações */
+#btnInfo {
+  background-color: #ffffff;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 15px;
+  transition: background 0.2s, color 0.2s;
+}
+
+#btnInfo:hover {
+  background-color: #f0f9ff;
+}
+
+/* Caixa de Texto Informativo */
+#textoInfo {
+  max-width: 420px;
+  width: 100%;
+  background: #e0f2fe !important;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Imagem do Rodapé */
+img {
+  margin-top: 35px;
+  max-width: 130px;
+  height: auto;
+  opacity: 0.85;
+}
