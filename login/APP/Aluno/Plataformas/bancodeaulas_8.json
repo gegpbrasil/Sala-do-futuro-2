@@ -1,4 +1,4 @@
-﻿{
+{
  "materias": {
    "matematica": {
      "3ºBimestre": [
@@ -35,6 +35,14 @@
         "questao_1_2": ""
         "opções":{ 
          "a1-pt": ""
+         "b1-pt": ""
+         "c1-pt": ""
+         "d1-pt": ""
+           },
+        "Reposta1-pt":""
+
+            ]
+             }          "a1-pt": ""
          "b1-pt": ""
          "c1-pt": ""
          "d1-pt": ""
