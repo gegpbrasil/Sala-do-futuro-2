@@ -1,1 +1,791 @@
-﻿
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!----------Titulo e bombas invisiveis pro usuario------>
+
+  <title>Login do Estudante | Sala do futuro V2</title>
+
+<!----------Estilo visual da pagina--------------------->
+
+  <style>
+
+    :root {
+      --azul-principal: #2f80ed;
+      --azul-secundario: #59c3ff;
+      --azul-escuro: #1d4d9e;
+      --cinza-fundo: #f4f7fb;
+      --cinza-texto: #596579;
+      --cinza-claro: #dbe4ef;
+      --branco: #ffffff;
+      --sombra: 0 10px 30px rgba(24, 47, 89, 0.12);
+      --sombra-hover: 0 14px 34px rgba(24, 47, 89, 0.18);
+      --raio: 22px;
+      --transicao: 0.28s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, #fafdff 0%, #eef4fb 45%, #edf2f8 100%);
+      color: #243046;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+<!----------Animações--------------------->
+
+    @keyframes surgir {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulseAzul {
+      0% {
+        box-shadow: 0 0 0 0 rgba(47, 128, 237, 0.18);
+      }
+      70% {
+        box-shadow: 0 0 0 14px rgba(47, 128, 237, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(47, 128, 237, 0);
+      }
+    }
+
+    @keyframes brilhoBarra {
+      0% {
+        transform: scaleX(0.25);
+      }
+      100% {
+        transform: scaleX(1);
+      }
+    }
+
+<!----------Estrutura principal--------------------->
+
+    .pagina {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 28px 14px;
+    }
+
+    .caixa-login {
+      width: 100%;
+      max-width: 760px;
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(8px);
+      border-radius: 28px;
+      box-shadow: var(--sombra);
+      padding: 26px 26px 18px;
+      animation: surgir 0.65s ease;
+      border: 1px solid rgba(120, 160, 210, 0.16);
+      transition: var(--transicao);
+    }
+
+    .caixa-login:hover {
+      box-shadow: var(--sombra-hover);
+    }
+
+<!----------Topo--------------------->
+
+    .topo-login {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .topo-esquerda {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-texto {
+      display: flex;
+      flex-direction: column;
+      line-height: 0.95;
+      font-weight: bold;
+      font-size: 15px;
+      color: #1b2f7a;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .logo-texto span {
+      font-size: 19px;
+    }
+
+    .logo-sp {
+      width: 76px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .ajuda-topo {
+      font-size: 16px;
+      color: var(--cinza-texto);
+      margin-top: 8px;
+    }
+
+    .ajuda-topo a {
+      color: #45a6e8;
+      text-decoration: none;
+      font-weight: bold;
+      transition: var(--transicao);
+    }
+
+    .ajuda-topo a:hover {
+      opacity: 0.75;
+      text-decoration: underline;
+    }
+
+<!----------Barra / Etapas--------------------->
+
+    .barra-etapas {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .linha-etapas {
+      width: 100%;
+      height: 4px;
+      background: #cdeaf8;
+      border-radius: 99px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .linha-etapas .preenchida {
+      width: 54%;
+      height: 100%;
+      background: linear-gradient(90deg, #4ed0ef, #2f80ed);
+      border-radius: 99px;
+      transform-origin: left;
+      animation: brilhoBarra 0.7s ease;
+    }
+
+    .textos-etapas {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 15px;
+      color: #8d98aa;
+    }
+
+    .textos-etapas .ativo {
+      color: #2d7db2;
+      font-weight: bold;
+    }
+
+<!----------Centro do conteúdo--------------------->
+
+    .conteudo-login {
+      max-width: 560px;
+      margin: 32px auto 0;
+      text-align: center;
+    }
+
+    .conteudo-login h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      color: #51627f;
+      animation: surgir 0.8s ease;
+    }
+
+    .conteudo-login p {
+      margin: 12px auto 0;
+      max-width: 520px;
+      color: #5e6f84;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      line-height: 1.6;
+      animation: surgir 0.92s ease;
+    }
+
+<!----------Formulário--------------------->
+
+    .formulario {
+      margin-top: 38px;
+      text-align: left;
+      animation: surgir 1s ease;
+    }
+
+    .linha {
+      display: grid;
+      grid-template-columns: 1fr 160px;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .campo {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .campo label {
+      font-size: 17px;
+      color: #596579;
+      font-weight: bold;
+    }
+
+    .campo input {
+      height: 64px;
+      border: 2px solid #d7e1eb;
+      border-radius: 16px;
+      padding: 0 18px;
+      font-size: 18px;
+      background: #fdfefe;
+      color: #344054;
+      outline: none;
+      transition: var(--transicao);
+    }
+
+    .campo input:focus {
+      border-color: #6dbdf5;
+      box-shadow: 0 0 0 5px rgba(109, 189, 245, 0.13);
+      transform: translateY(-1px);
+    }
+
+    .senha-area {
+      position: relative;
+    }
+
+    .senha-area input {
+      width: 100%;
+      padding-right: 78px;
+    }
+
+    .botao-olho {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 68px;
+      height: 64px;
+      border: none;
+      border-left: 2px solid #d7e1eb;
+      border-radius: 0 16px 16px 0;
+      background: #ffffff;
+      font-size: 22px;
+      cursor: pointer;
+      color: #8491a7;
+      transition: var(--transicao);
+    }
+
+    .botao-olho:hover {
+      background: #f2f7fb;
+      color: #2f80ed;
+    }
+
+    .texto-ajuda {
+      text-align: center;
+      margin: 16px 0 0;
+      color: #7b8799;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .texto-ajuda a {
+      color: #2f80ed;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .texto-ajuda a:hover {
+      text-decoration: underline;
+    }
+
+<!----------Mensagem--------------------->
+
+    #mensagem {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: bold;
+      display: none;
+    }
+
+    #mensagem.sucesso {
+      display: block;
+      background: #e6f7ee;
+      color: #187c44;
+      border: 1px solid #b8e5ca;
+    }
+
+    #mensagem.erro {
+      display: block;
+      background: #fdeeee;
+      color: #b42318;
+      border: 1px solid #f5c8c8;
+    }
+
+    #mensagem.carregando {
+      display: block;
+      background: #eef6ff;
+      color: #195ba6;
+      border: 1px solid #cbe2ff;
+    }
+
+<!----------Botões--------------------->
+
+    .acoes {
+      display: flex;
+      gap: 18px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .acoes a,
+    .acoes button {
+      min-width: 210px;
+      height: 60px;
+      border-radius: 999px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: var(--transicao);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .voltar {
+      background: transparent;
+      border: 2px solid #bfd1e5;
+      color: #57657a;
+    }
+
+    .voltar:hover {
+      transform: translateY(-2px);
+      border-color: #90b7e6;
+      color: #2f80ed;
+    }
+
+    .acessar {
+      border: none;
+      color: white;
+      background: linear-gradient(135deg, #4b9fff 0%, #2f80ed 60%, #2869c5 100%);
+      box-shadow: 0 10px 22px rgba(47, 128, 237, 0.28);
+      animation: pulseAzul 2.2s infinite;
+    }
+
+    .acessar:hover {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 14px 26px rgba(47, 128, 237, 0.36);
+    }
+
+<!----------Acessibilidade--------------------->
+
+    .acessibilidade {
+      margin-top: 34px;
+      padding-top: 20px;
+      border-top: 1px solid #dde8f2;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .acessibilidade h2 {
+      margin: 0;
+      font-size: 18px;
+      color: #4e5e75;
+    }
+
+    .grupo-acessibilidade {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .grupo-acessibilidade button {
+      border: 1px solid #cbd7e5;
+      background: white;
+      color: #45617d;
+      padding: 11px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: var(--transicao);
+    }
+
+    .grupo-acessibilidade button:hover {
+      border-color: #7eb5ed;
+      color: #2f80ed;
+      transform: translateY(-1px);
+    }
+
+<!----------Rodapé--------------------->
+
+    .rodape {
+      margin-top: 26px;
+      text-align: center;
+    }
+
+    .rodape img {
+      width: 150px;
+      max-width: 100%;
+      opacity: 0.96;
+      transition: var(--transicao);
+    }
+
+    .rodape img:hover {
+      transform: scale(1.03);
+    }
+
+<!----------Responsividade--------------------->
+
+    @media (max-width: 640px) {
+      .caixa-login {
+        padding: 22px 16px 18px;
+        border-radius: 22px;
+      }
+
+      .topo-login {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .linha {
+        grid-template-columns: 1fr;
+      }
+
+      .acoes a,
+      .acoes button {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .conteudo-login {
+        margin-top: 26px;
+      }
+
+      .campo input,
+      .botao-olho {
+        height: 58px;
+      }
+
+      .botao-olho {
+        width: 62px;
+      }
+
+      .logo-sp {
+        width: 68px;
+      }
+
+      .textos-etapas {
+        font-size: 14px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <main class="pagina" id="conteudo">
+
+    <section class="caixa-login">
+
+<!----------Topo da página--------------------->
+
+      <div class="topo-login">
+
+        <div class="topo-esquerda">
+          <img src="../Logosp.png" alt="Logo do Governo de São Paulo" class="logo-sp">
+
+          <div class="logo-texto">
+            <span>SALA DO</span>
+            <span>FUTURO</span>
+          </div>
+        </div>
+
+        <div class="ajuda-topo">
+          Precisa de ajuda?
+          <a href="#">Clique aqui</a>
+        </div>
+
+      </div>
+
+<!----------Barra de etapas--------------------->
+
+      <div class="barra-etapas">
+        <div class="linha-etapas">
+          <div class="preenchida"></div>
+        </div>
+
+        <div class="textos-etapas">
+          <span>escolher perfil</span>
+          <span class="ativo">realizar login</span>
+        </div>
+      </div>
+
+<!----------Titulo e informações visiveis------------->
+
+      <div class="conteudo-login">
+        <h1>Estudante</h1>
+        <p>
+          Preencha seus dados abaixo para acessar o sistema.
+        </p>
+
+<!----------Formulário do aluno--------------------->
+
+        <form id="loginForm" class="formulario">
+
+          <div class="linha">
+
+            <div class="campo">
+              <label for="email">E-mail institucional</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="seuemail@escola.sp.gov.br"
+                autocomplete="username"
+                required
+              >
+            </div>
+
+            <div class="campo">
+              <label for="turma">Turma (opcional)</label>
+              <input
+                type="text"
+                id="turma"
+                placeholder="8ºA"
+              >
+            </div>
+
+          </div>
+
+          <div class="campo">
+            <label for="senha">Senha</label>
+
+            <div class="senha-area">
+              <input
+                type="password"
+                id="senha"
+                placeholder="Digite sua senha"
+                autocomplete="current-password"
+                required
+              >
+
+              <button
+                type="button"
+                class="botao-olho"
+                id="toggleSenha"
+                aria-label="Mostrar ou esconder senha"
+              >
+                👁
+              </button>
+            </div>
+          </div>
+
+          <p class="texto-ajuda">
+            Esqueceu a senha?
+            <a href="#">Clique aqui</a>
+            para saber como recuperá-la.
+          </p>
+
+          <div id="mensagem" aria-live="polite"></div>
+
+<!----------Botões principais--------------------->
+
+          <div class="acoes">
+            <a href="../Index.html" class="voltar">Voltar</a>
+            <button type="submit" class="acessar" id="entrar">Acessar</button>
+          </div>
+
+        </form>
+
+<!----------Acessibilidade simples--------------------->
+
+        <section class="acessibilidade">
+          <h2>Acessibilidade</h2>
+
+          <div class="grupo-acessibilidade">
+            <button type="button" id="lerPagina">Ler página</button>
+            <button type="button" id="lerSelecionado">Ler selecionado</button>
+            <button type="button" id="pararLeitura">Parar leitura</button>
+          </div>
+        </section>
+
+<!----------Rodapé--------------------->
+
+        <div class="rodape">
+          <img src="../Logosp.png" alt="Governo do Estado de São Paulo">
+        </div>
+
+      </div>
+
+    </section>
+  </main>
+
+<!----------VLibras--------------------->
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
+<!----------Firebase login--------------------->
+
+  <script type="module">
+
+    import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+    import {
+      getAuth,
+      signInWithEmailAndPassword
+    }
+    from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCey_SsTCeHuTKwBaZ-Eo6_7LRa4l-5A80",
+      authDomain: "salafuturov2prot.firebaseapp.com",
+      projectId: "salafuturov2prot",
+      storageBucket: "salafuturov2prot.firebasestorage.app",
+      messagingSenderId: "352042722106",
+      appId: "1:352042722106:web:395ba7ef400d1421426603",
+      measurementId: "G-LW16X3NHH8"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const loginForm = document.getElementById("loginForm");
+    const mensagem = document.getElementById("mensagem");
+    const entrar = document.getElementById("entrar");
+
+    function mostrarMensagem(tipo, texto) {
+      mensagem.className = "";
+      mensagem.classList.add(tipo);
+      mensagem.textContent = texto;
+    }
+
+    loginForm.addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const senha = document.getElementById("senha").value;
+
+      mostrarMensagem("carregando", "Entrando...");
+      entrar.disabled = true;
+      entrar.textContent = "Acessando...";
+
+      try {
+        await signInWithEmailAndPassword(auth, email, senha);
+
+        mostrarMensagem("sucesso", "Login realizado com sucesso.");
+        entrar.textContent = "Sucesso";
+
+        setTimeout(() => {
+          window.location.href = "../aluno/index.html";
+        }, 800);
+
+      } catch (error) {
+        console.error(error);
+        mostrarMensagem("erro", "E-mail ou senha incorretos.");
+        entrar.disabled = false;
+        entrar.textContent = "Acessar";
+      }
+    });
+
+  </script>
+
+<!----------Interações simples e Web Speech API--------------------->
+
+  <script>
+
+    const toggleSenha = document.getElementById("toggleSenha");
+    const senha = document.getElementById("senha");
+
+    toggleSenha.addEventListener("click", function() {
+      if (senha.type === "password") {
+        senha.type = "text";
+        toggleSenha.textContent = "🙈";
+      } else {
+        senha.type = "password";
+        toggleSenha.textContent = "👁";
+      }
+    });
+
+
+<!----------Leitura da página--------------------->
+
+    const lerPagina = document.getElementById("lerPagina");
+    const lerSelecionado = document.getElementById("lerSelecionado");
+    const pararLeitura = document.getElementById("pararLeitura");
+
+    function falar(texto) {
+      if (!("speechSynthesis" in window)) {
+        alert("Seu navegador não suporta leitura por voz.");
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+
+      const fala = new SpeechSynthesisUtterance(texto);
+      fala.lang = "pt-BR";
+      fala.rate = 1;
+      fala.pitch = 1;
+
+      window.speechSynthesis.speak(fala);
+    }
+
+    lerPagina.addEventListener("click", function() {
+      const texto = document.getElementById("conteudo").innerText;
+      falar(texto);
+    });
+
+    lerSelecionado.addEventListener("click", function() {
+      const texto = window.getSelection().toString().trim();
+
+      if (texto === "") {
+        alert("Selecione algum texto primeiro.");
+        return;
+      }
+
+      falar(texto);
+    });
+
+    pararLeitura.addEventListener("click", function() {
+      window.speechSynthesis.cancel();
+    });
+
+  </script>
+
+</body>
+</html>
