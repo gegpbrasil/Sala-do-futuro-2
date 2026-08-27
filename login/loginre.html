@@ -1,1 +1,1266 @@
-﻿
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!----------Titulo e bombas invisiveis pro usuario------>
+
+  <title>Login do Responsável | Sala do futuro V2</title>
+
+<!----------Estilo visual da pagina--------------------->
+
+<style>
+
+:root {
+  --azul: #2f80ed;
+  --azul-claro: #59c3ff;
+  --azul-escuro: #1d4d9e;
+  --fundo: #f3f7fb;
+  --texto: #53657c;
+  --borda: #d8e2ed;
+  --branco: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+
+  background:
+  linear-gradient(
+    135deg,
+    #f8fbff,
+    #edf3f9
+  );
+
+  color: #26364d;
+  min-height: 100vh;
+}
+
+
+/*----------Animações----------*/
+
+@keyframes aparecer {
+
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+@keyframes pulsar {
+
+  0% {
+    box-shadow:
+    0 0 0 0 rgba(47,128,237,0.25);
+  }
+
+  70% {
+    box-shadow:
+    0 0 0 13px rgba(47,128,237,0);
+  }
+
+  100% {
+    box-shadow:
+    0 0 0 0 rgba(47,128,237,0);
+  }
+
+}
+
+
+/*----------Pagina----------*/
+
+.pagina {
+
+  min-height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  padding: 25px 15px;
+
+}
+
+
+/*----------Caixa principal----------*/
+
+.login-card {
+
+  width: 100%;
+  max-width: 720px;
+
+  background: white;
+
+  border-radius: 26px;
+
+  padding: 30px;
+
+  box-shadow:
+  0 10px 35px rgba(40,70,110,0.13);
+
+  animation:
+  aparecer 0.6s ease;
+
+}
+
+
+/*----------Topo----------*/
+
+.topo {
+
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+
+  flex-wrap: wrap;
+
+}
+
+.marca {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+}
+
+.logo-sp {
+
+  width: 75px;
+  height: auto;
+
+}
+
+.nome-sistema {
+
+  color: #1f377c;
+
+  font-size: 20px;
+
+  font-weight: bold;
+
+  line-height: 1;
+
+}
+
+.ajuda {
+
+  color: #718095;
+
+}
+
+.ajuda a {
+
+  color: #36a3df;
+
+  font-weight: bold;
+
+  text-decoration: none;
+
+}
+
+.ajuda a:hover {
+
+  text-decoration: underline;
+
+}
+
+
+/*----------Etapas----------*/
+
+.etapas {
+
+  margin-top: 25px;
+
+}
+
+.barra {
+
+  width: 100%;
+  height: 4px;
+
+  background: #d8edf7;
+
+  border-radius: 99px;
+
+  overflow: hidden;
+
+}
+
+.barra div {
+
+  width: 55%;
+  height: 100%;
+
+  background:
+  linear-gradient(
+    90deg,
+    #52d4ed,
+    #2f80ed
+  );
+
+}
+
+.etapas-texto {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 10px;
+
+  color: #a0aaba;
+
+}
+
+.etapas-texto strong {
+
+  color: #2d7ea9;
+
+}
+
+
+/*----------Conteúdo----------*/
+
+.conteudo {
+
+  max-width: 540px;
+
+  margin: 35px auto 0;
+
+  text-align: center;
+
+}
+
+.conteudo h1 {
+
+  margin: 0;
+
+  font-size:
+  clamp(2.4rem, 6vw, 4rem);
+
+  color: #53657f;
+
+}
+
+.descricao {
+
+  margin-top: 12px;
+
+  color: #64758a;
+
+  line-height: 1.6;
+
+}
+
+
+/*----------Formulario----------*/
+
+form {
+
+  margin-top: 36px;
+
+  text-align: left;
+
+}
+
+.campo {
+
+  margin-bottom: 20px;
+
+}
+
+.campo label {
+
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #596b80;
+
+  font-weight: bold;
+
+}
+
+.campo input {
+
+  width: 100%;
+  height: 62px;
+
+  padding: 0 17px;
+
+  border:
+
+  2px solid var(--borda);
+
+  border-radius: 15px;
+
+  background: #fcfdff;
+
+  font-size: 17px;
+
+  outline: none;
+
+  transition: 0.25s;
+
+}
+
+.campo input:focus {
+
+  border-color: #6ab9ee;
+
+  box-shadow:
+
+  0 0 0 5px rgba(106,185,238,0.13);
+
+}
+
+
+/*----------Senha----------*/
+
+.senha-area {
+
+  position: relative;
+
+}
+
+.senha-area input {
+
+  padding-right: 70px;
+
+}
+
+.ver-senha {
+
+  position: absolute;
+
+  right: 0;
+  top: 0;
+
+  width: 65px;
+  height: 62px;
+
+  border: none;
+
+  border-left:
+
+  2px solid var(--borda);
+
+  border-radius:
+
+  0 15px 15px 0;
+
+  background: white;
+
+  cursor: pointer;
+
+  font-size: 20px;
+
+}
+
+
+/*----------Ajuda senha----------*/
+
+.esqueceu {
+
+  text-align: center;
+
+  color: #718095;
+
+  font-size: 14px;
+
+}
+
+.esqueceu a {
+
+  color: var(--azul);
+
+  font-weight: bold;
+
+}
+
+
+/*----------Mensagem----------*/
+
+#mensagem {
+
+  display: none;
+
+  margin-top: 18px;
+
+  padding: 14px;
+
+  border-radius: 12px;
+
+  text-align: center;
+
+  font-weight: bold;
+
+}
+
+#mensagem.carregando {
+
+  display: block;
+
+  background: #eef6ff;
+
+  color: #2563a8;
+
+}
+
+#mensagem.sucesso {
+
+  display: block;
+
+  background: #e9f8ef;
+
+  color: #197443;
+
+}
+
+#mensagem.erro {
+
+  display: block;
+
+  background: #ffeded;
+
+  color: #a82626;
+
+}
+
+
+/*----------Botões----------*/
+
+.acoes {
+
+  display: flex;
+
+  gap: 18px;
+
+  margin-top: 28px;
+
+}
+
+.acoes a,
+.acoes button {
+
+  width: 50%;
+  height: 58px;
+
+  border-radius: 999px;
+
+  font-size: 17px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+
+  transition: 0.25s;
+
+}
+
+.voltar {
+
+  border:
+
+  2px solid #cbd8e7;
+
+  color: #56677c;
+
+}
+
+.voltar:hover {
+
+  transform: translateY(-2px);
+
+  border-color: #7cb6ee;
+
+}
+
+.acessar {
+
+  border: none;
+
+  color: white;
+
+  background:
+
+  linear-gradient(
+    135deg,
+    #4a9df8,
+    #2f80ed
+  );
+
+  animation:
+
+  pulsar 2.5s infinite;
+
+}
+
+.acessar:hover {
+
+  transform:
+  translateY(-2px);
+
+}
+
+
+/*----------Acessibilidade----------*/
+
+.acessibilidade {
+
+  margin-top: 32px;
+
+  padding-top: 20px;
+
+  border-top:
+
+  1px solid #dce6ef;
+
+}
+
+.acessibilidade h2 {
+
+  margin-top: 0;
+
+  font-size: 17px;
+
+  color: #53657c;
+
+}
+
+.botoes-acessibilidade {
+
+  display: flex;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+
+}
+
+.botoes-acessibilidade button {
+
+  padding: 10px 15px;
+
+  border:
+
+  1px solid #cad7e5;
+
+  border-radius: 10px;
+
+  background: white;
+
+  cursor: pointer;
+
+  color: #4d6278;
+
+}
+
+.botoes-acessibilidade button:hover {
+
+  border-color: #5baaf1;
+
+  color: #2f80ed;
+
+}
+
+
+/*----------Rodape----------*/
+
+.rodape {
+
+  text-align: center;
+
+  margin-top: 27px;
+
+}
+
+.rodape img {
+
+  width: 150px;
+
+}
+
+
+/*----------Celular----------*/
+
+@media(max-width:600px) {
+
+  .login-card {
+
+    padding: 22px 16px;
+
+  }
+
+  .acoes {
+
+    flex-direction: column;
+
+  }
+
+  .acoes a,
+  .acoes button {
+
+    width: 100%;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<main class="pagina" id="conteudo">
+
+<section class="login-card">
+
+<!----------Topo--------------------->
+
+<div class="topo">
+
+  <div class="marca">
+
+    <img
+      src="../Logosp.png"
+      class="logo-sp"
+      alt="Governo de São Paulo">
+
+    <div class="nome-sistema">
+
+      SALA DO<br>
+      FUTURO
+
+    </div>
+
+  </div>
+
+  <div class="ajuda">
+
+    Precisa de ajuda?
+
+    <a href="#">
+      Clique aqui
+    </a>
+
+  </div>
+
+</div>
+
+
+<!----------Etapas--------------------->
+
+<div class="etapas">
+
+  <div class="barra">
+
+    <div></div>
+
+  </div>
+
+  <div class="etapas-texto">
+
+    <span>
+      escolher perfil
+    </span>
+
+    <strong>
+      realizar login
+    </strong>
+
+  </div>
+
+</div>
+
+
+<!----------Titulo e informações visiveis------------->
+
+<div class="conteudo">
+
+<h1>
+  Responsável
+</h1>
+
+<p class="descricao">
+
+  Entre com sua conta para acompanhar
+  as informações do estudante.
+
+</p>
+
+
+<!----------Formulario de login--------------------->
+
+<form id="loginForm">
+
+<div class="campo">
+
+  <label for="email">
+
+    E-mail
+
+  </label>
+
+  <input
+    type="email"
+    id="email"
+    placeholder="Digite seu e-mail"
+    autocomplete="username"
+    required>
+
+</div>
+
+
+<div class="campo">
+
+  <label for="senha">
+
+    Senha
+
+  </label>
+
+  <div class="senha-area">
+
+    <input
+      type="password"
+      id="senha"
+      placeholder="Digite sua senha"
+      autocomplete="current-password"
+      required>
+
+    <button
+      type="button"
+      class="ver-senha"
+      id="verSenha"
+      aria-label="Mostrar senha">
+
+      👁
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<p class="esqueceu">
+
+  Esqueceu a senha?
+
+  <a href="#">
+    Clique aqui
+  </a>
+
+  para recuperá-la.
+
+</p>
+
+
+<!----------Mensagem do login--------------------->
+
+<div
+  id="mensagem"
+  aria-live="polite">
+</div>
+
+
+<!----------Botões principais--------------------->
+
+<div class="acoes">
+
+  <a
+    href="../Index.html"
+    class="voltar">
+
+    Voltar
+
+  </a>
+
+  <button
+    type="submit"
+    class="acessar"
+    id="entrar">
+
+    Acessar
+
+  </button>
+
+</div>
+
+</form>
+
+
+<!----------Acessibilidade simples--------------------->
+
+<section class="acessibilidade">
+
+<h2>
+  Acessibilidade
+</h2>
+
+<div class="botoes-acessibilidade">
+
+  <button
+    type="button"
+    id="lerPagina">
+
+    Ler página
+
+  </button>
+
+  <button
+    type="button"
+    id="lerSelecionado">
+
+    Ler selecionado
+
+  </button>
+
+  <button
+    type="button"
+    id="pararLeitura">
+
+    Parar leitura
+
+  </button>
+
+</div>
+
+</section>
+
+
+<!----------Rodapé--------------------->
+
+<div class="rodape">
+
+  <img
+    src="../Logosp.png"
+    alt="Governo do Estado de São Paulo">
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!----------VLibras--------------------->
+
+<div vw class="enabled">
+
+  <div
+    vw-access-button
+    class="active">
+  </div>
+
+  <div vw-plugin-wrapper>
+
+    <div
+      class="vw-plugin-top-wrapper">
+    </div>
+
+  </div>
+
+</div>
+
+
+<script
+src="https://vlibras.gov.br/app/vlibras-plugin.js">
+</script>
+
+<script>
+
+new window.VLibras.Widget(
+  "https://vlibras.gov.br/app"
+);
+
+</script>
+
+
+<!----------Firebase--------------------->
+
+<script type="module">
+
+import {
+  initializeApp
+}
+
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import {
+  getAuth,
+  signInWithEmailAndPassword
+}
+
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyCey_SsTCeHuTKwBaZ-Eo6_7LRa4l-5A80",
+
+  authDomain:
+  "salafuturov2prot.firebaseapp.com",
+
+  projectId:
+  "salafuturov2prot",
+
+  storageBucket:
+  "salafuturov2prot.firebasestorage.app",
+
+  messagingSenderId:
+  "352042722106",
+
+  appId:
+  "1:352042722106:web:395ba7ef400d1421426603",
+
+  measurementId:
+  "G-LW16X3NHH8"
+
+};
+
+
+/*----------Iniciar Firebase----------*/
+
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+
+/*----------Elementos----------*/
+
+const loginForm =
+document.getElementById(
+  "loginForm"
+);
+
+const mensagem =
+document.getElementById(
+  "mensagem"
+);
+
+const entrar =
+document.getElementById(
+  "entrar"
+);
+
+
+/*----------Mensagens----------*/
+
+function mostrarMensagem(
+  tipo,
+  texto
+) {
+
+  mensagem.className =
+  tipo;
+
+  mensagem.textContent =
+  texto;
+
+}
+
+
+/*----------Login----------*/
+
+loginForm.addEventListener(
+"submit",
+async function(event) {
+
+  event.preventDefault();
+
+  const email =
+  document
+  .getElementById("email")
+  .value
+  .trim();
+
+  const senha =
+  document
+  .getElementById("senha")
+  .value;
+
+
+  mostrarMensagem(
+    "carregando",
+    "Entrando..."
+  );
+
+
+  entrar.disabled =
+  true;
+
+  entrar.textContent =
+  "Acessando...";
+
+
+  try {
+
+    await
+    signInWithEmailAndPassword(
+      auth,
+      email,
+      senha
+    );
+
+
+    mostrarMensagem(
+      "sucesso",
+      "Login realizado com sucesso."
+    );
+
+
+    entrar.textContent =
+    "Sucesso";
+
+
+    setTimeout(
+    function() {
+
+      window.location.href =
+      "../responsavel/index.html";
+
+    },
+    700
+    );
+
+  }
+
+
+  catch(error) {
+
+    console.error(error);
+
+
+    mostrarMensagem(
+      "erro",
+      "E-mail ou senha incorretos."
+    );
+
+
+    entrar.disabled =
+    false;
+
+    entrar.textContent =
+    "Acessar";
+
+  }
+
+});
+
+</script>
+
+
+<!----------Javascript simples--------------------->
+
+<script>
+
+
+/*----------Mostrar senha----------*/
+
+const verSenha =
+document.getElementById(
+  "verSenha"
+);
+
+const senha =
+document.getElementById(
+  "senha"
+);
+
+
+verSenha.addEventListener(
+"click",
+function() {
+
+  if(
+    senha.type ===
+    "password"
+  ) {
+
+    senha.type =
+    "text";
+
+    verSenha.textContent =
+    "🙈";
+
+  }
+
+  else {
+
+    senha.type =
+    "password";
+
+    verSenha.textContent =
+    "👁";
+
+  }
+
+});
+
+
+<!----------Web Speech API---------->
+
+const lerPagina =
+document.getElementById(
+  "lerPagina"
+);
+
+const lerSelecionado =
+document.getElementById(
+  "lerSelecionado"
+);
+
+const pararLeitura =
+document.getElementById(
+  "pararLeitura"
+);
+
+
+function falar(texto) {
+
+  if(
+    !(
+      "speechSynthesis"
+      in window
+    )
+  ) {
+
+    alert(
+      "Seu navegador não suporta leitura por voz."
+    );
+
+    return;
+
+  }
+
+
+  window
+  .speechSynthesis
+  .cancel();
+
+
+  const fala =
+  new SpeechSynthesisUtterance(
+    texto
+  );
+
+
+  fala.lang =
+  "pt-BR";
+
+  fala.rate =
+  1;
+
+  fala.pitch =
+  1;
+
+
+  window
+  .speechSynthesis
+  .speak(fala);
+
+}
+
+
+/*----------Ler página----------*/
+
+lerPagina.addEventListener(
+"click",
+function() {
+
+  const texto =
+  document
+  .getElementById("conteudo")
+  .innerText;
+
+  falar(texto);
+
+});
+
+
+/*----------Ler selecionado----------*/
+
+lerSelecionado.addEventListener(
+"click",
+function() {
+
+  const texto =
+  window
+  .getSelection()
+  .toString()
+  .trim();
+
+
+  if(
+    texto === ""
+  ) {
+
+    alert(
+      "Selecione algum texto primeiro."
+    );
+
+    return;
+
+  }
+
+
+  falar(texto);
+
+});
+
+
+/*----------Parar leitura----------*/
+
+pararLeitura.addEventListener(
+"click",
+function() {
+
+  window
+  .speechSynthesis
+  .cancel();
+
+});
+
+</script>
+
+</body>
+
+</html>
