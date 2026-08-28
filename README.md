@@ -1,12 +1,12 @@
 # Sala do Futuro 2 - Documentação Oficial do Ecossistema Escolar Gamificado
 
 ## Visão Geral do Projeto
-O **Sala do Futuro 2** é um protótipo de ecossistema escolar gamificado projetado para transformar a dinâmica de engajamento discente no ambiente de ensino . A iniciativa busca dissociar a avaliação acadêmica tradicional (focada na mensuração de notas) da progressão contínua baseada em esforço, constância, participação e determinação.
+A *Sala do futuro 2* é uma plataforma feita para alunos exclusivamente para fins estundatis e tem direitos reservados.
 
 ---
 
 ## Objetivos Centrais
-1. **Engajamento Sustentável:** Utilizar mecânicas inspiradas em plataformas de progressão para incentivar a constância nos estudos e na frequência escolar.
+1. **Engajamento Sustentável:** Utilizar mecânicas inspiradas em plataformas de progressão (Como o duolingo) para incentivar a constância nos estudos e na frequência escolar.
 2. **Equidade de Reconhecimento:** Garantir que o sucesso no sistema não dependa exclusivamente de desempenho acadêmico pontual, permitindo que diferentes perfis de estudantes alcancem reconhecimento.
 3. **Colaboração e Comunidade:** Fomentar o senso de pertencimento e trabalho em equipe por meio de guildas estruturadas.
 
@@ -37,3 +37,8 @@ O fluxo essencial validado para demonstração inicial compreende:
 3. Submissão de respostas pelos discentes na plataforma.
 4. Correção automatizada com auxílio explicativo da IA.
 5. Atualização em tempo real de XP, níveis e métricas de determinação.
+
+---
+## Texto feito com o Gemini e com revisões/adições humanas.
+ *aviso*: qualquer parte desse código esta sujeito por revisões de AI mesmo que boa parte seja humano.
+ 
