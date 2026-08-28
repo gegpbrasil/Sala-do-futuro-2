@@ -1,472 +1,2116 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
 
 <!----------Titulo e bombas invisiveis pro usuario------>
 
-  <title>Área do Professor | Sala do Futuro V2</title>
+  <title>
+    Área do Professor | Sala do Futuro V2
+  </title>
 
-<!----------Estilo visual da pagina--------------------->
 
-<style>
-:root{
-  --azul:#2f80ed;--azul2:#59c3ff;--azulescuro:#173a7a;--fundo:#eef4fa;
-  --branco:#fff;--texto:#26364d;--texto2:#64758a;--borda:#d8e2ed;
-  --verde:#18794e;--vermelho:#b42318;--amarelo:#8a5a00;
-  --sombra:0 12px 35px rgba(30,60,100,.12);--transicao:.22s ease;
-}
-*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;min-height:100vh;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#f9fbff,var(--fundo));color:var(--texto)}
-button,input,textarea,select{font:inherit} button{cursor:pointer}
-@keyframes aparecer{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-@keyframes brilho{0%{box-shadow:0 0 0 0 rgba(47,128,237,.18)}70%{box-shadow:0 0 0 12px rgba(47,128,237,0)}100%{box-shadow:0 0 0 0 rgba(47,128,237,0)}}
-.app{min-height:100vh;display:grid;grid-template-columns:255px 1fr}
-.menu{min-height:100vh;padding:22px 16px;background:rgba(255,255,255,.96);border-right:1px solid var(--borda);position:sticky;top:0;height:100vh;overflow-y:auto}
-.marca{display:flex;align-items:center;gap:13px;padding:4px 8px 20px}.logo{width:62px;height:auto}.nome-sistema{color:var(--azulescuro);font-weight:bold;line-height:.95;letter-spacing:1px}.nome-sistema span{display:block;font-size:18px}
-.professor-info{margin:0 6px 18px;padding:12px;border-radius:14px;background:#f1f7fd;color:var(--texto2);font-size:13px}.professor-info strong{display:block;margin-top:3px;color:var(--texto);overflow-wrap:anywhere}
-.menu-botao{width:100%;margin:4px 0;padding:11px 12px;border:1px solid transparent;border-radius:12px;background:transparent;color:#4d6076;text-align:left;transition:var(--transicao)}
-.menu-botao:hover{background:#f1f7fd;color:var(--azul)}.menu-botao.ativo{background:#eaf4ff;color:var(--azul);border-color:#cce3f8;font-weight:bold}
-.menu-rodape{margin-top:20px;display:grid;gap:8px}.menu-rodape button{width:100%;padding:10px;border-radius:10px;border:1px solid var(--borda);background:white;color:var(--texto2)}
-.conteudo{min-width:0;padding:26px}.topo{max-width:1200px;margin:0 auto 22px;display:flex;justify-content:space-between;align-items:center;gap:15px}.topo h1{margin:0;color:#445671;font-size:clamp(1.6rem,4vw,2.4rem)}.topo p{margin:5px 0 0;color:var(--texto2)}
-.status-firebase{padding:9px 12px;border-radius:999px;background:#eef6ff;border:1px solid #d2e6fb;color:#235f9e;font-size:13px}
-.pagina{max-width:1200px;margin:0 auto;display:none;animation:aparecer .32s ease}.pagina.ativa{display:block}
-.grade{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.card{grid-column:span 6;background:rgba(255,255,255,.97);border:1px solid rgba(170,190,215,.45);border-radius:20px;padding:20px;box-shadow:0 8px 25px rgba(40,70,110,.08)}.card.largo{grid-column:span 12}.card h2,.card h3{margin-top:0;color:#425670}.card p{color:var(--texto2);line-height:1.5}
-.metricas{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.metrica{padding:18px;border:1px solid #dce8f3;border-radius:17px;background:linear-gradient(135deg,#fff,#f6faff)}.metrica strong{display:block;margin-top:6px;font-size:27px;color:var(--azul)}
-.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.form-grid .completo{grid-column:1/-1}.campo{display:flex;flex-direction:column;gap:7px}.campo label{color:#4f6279;font-weight:bold;font-size:14px}.campo input,.campo textarea,.campo select{width:100%;border:1px solid var(--borda);border-radius:12px;background:#fcfdff;color:var(--texto);padding:11px 12px;outline:none;transition:var(--transicao)}.campo textarea{min-height:105px;resize:vertical}.campo input:focus,.campo textarea:focus,.campo select:focus{border-color:#64b6ed;box-shadow:0 0 0 4px rgba(100,182,237,.12)}
-.acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}.botao{min-height:42px;padding:9px 15px;border-radius:12px;border:1px solid var(--borda);background:white;color:#52657c;transition:var(--transicao)}.botao:hover{transform:translateY(-1px);border-color:#86bcea;color:var(--azul)}.botao.primario{border:none;background:linear-gradient(135deg,#4aa4ff,#2f80ed);color:white;font-weight:bold;animation:brilho 2.8s infinite}.botao.perigo{color:var(--vermelho);border-color:#f0c9c6}.botao.sucesso{color:var(--verde);border-color:#bfe3ce}
-.mensagem{display:none;margin-top:13px;padding:11px 13px;border-radius:12px;font-size:14px}.mensagem.mostrar{display:block}.mensagem.ok{background:#eaf7f0;border:1px solid #bee2cc;color:var(--verde)}.mensagem.erro{background:#feeeee;border:1px solid #f2c9c5;color:var(--vermelho)}.mensagem.info{background:#eef6ff;border:1px solid #cfe4fa;color:#245f9d}
-.tabela-wrap{overflow-x:auto;border:1px solid #e1e9f1;border-radius:14px}table{width:100%;border-collapse:collapse;min-width:650px;background:white}th,td{padding:11px 12px;border-bottom:1px solid #e8edf3;text-align:left;vertical-align:top}th{background:#f5f9fd;color:#52647a;font-size:13px}td{color:#41546b;font-size:14px}.codigo{font-family:Consolas,"Courier New",monospace;word-break:break-all}.vazio{padding:18px;text-align:center;color:#7b889a}.badge{display:inline-block;padding:5px 8px;border-radius:999px;background:#eef6ff;color:#2f73b1;font-size:12px;font-weight:bold}.badge.pendente{background:#fff5dc;color:var(--amarelo)}.badge.aprovada{background:#e7f7ee;color:var(--verde)}.badge.rejeitada{background:#feebeb;color:var(--vermelho)}.xp-input{width:75px;padding:7px 8px;border:1px solid var(--borda);border-radius:9px}
-.aluno-chamada{display:grid;grid-template-columns:minmax(150px,1fr) 125px minmax(180px,1fr);gap:10px;align-items:center;padding:10px;border-bottom:1px solid #ebf0f5}.aluno-chamada:last-child{border-bottom:none}.aluno-chamada input,.aluno-chamada select{width:100%;border:1px solid var(--borda);border-radius:9px;padding:8px}
-.acessibilidade{position:fixed;right:16px;bottom:16px;z-index:20}.acessibilidade details{background:white;border:1px solid var(--borda);border-radius:14px;box-shadow:var(--sombra)}.acessibilidade summary{list-style:none;padding:11px 14px;cursor:pointer;color:#52657a;font-weight:bold}.acessibilidade summary::-webkit-details-marker{display:none}.acessibilidade-botoes{padding:0 10px 10px;display:grid;gap:7px}.acessibilidade-botoes button{border:1px solid var(--borda);border-radius:9px;background:white;padding:8px}
-@media(max-width:900px){.app{grid-template-columns:1fr}.menu{min-height:auto;height:auto;position:relative;border-right:none;border-bottom:1px solid var(--borda)}.menu-navegacao{display:flex;gap:7px;overflow-x:auto;padding-bottom:6px}.menu-botao{min-width:max-content;width:auto}.menu-rodape{grid-template-columns:repeat(2,1fr)}.metricas{grid-template-columns:repeat(2,1fr)}.card{grid-column:span 12}}
-@media(max-width:620px){.conteudo{padding:16px 10px 80px}.topo{align-items:flex-start;flex-direction:column}.form-grid{grid-template-columns:1fr}.form-grid .completo{grid-column:auto}.metricas{grid-template-columns:1fr}.aluno-chamada{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-</style>
+<!----------CSS da pagina--------------------->
+
+  <link
+    rel="stylesheet"
+    href="css/index.css"
+  >
+
 </head>
 
+
 <body>
-<div class="app" id="conteudo">
+
+
+<div
+  class="app"
+  id="conteudo"
+>
+
 
 <!----------Menu lateral--------------------->
 
 <aside class="menu">
+
+
   <div class="marca">
-    <img src="../logosp.png" class="logo" alt="Governo do Estado de São Paulo">
-    <div class="nome-sistema"><span>SALA DO</span><span>FUTURO</span></div>
+
+    <img
+      src="../../logosp.png"
+      class="logo"
+      alt="Governo do Estado de São Paulo"
+    >
+
+
+    <div class="nome-sistema">
+
+      <span>
+        SALA DO
+      </span>
+
+      <span>
+        FUTURO
+      </span>
+
+    </div>
+
   </div>
+
+
+<!----------Professor conectado--------------------->
 
   <div class="professor-info">
+
     Professor conectado
-    <strong id="professorEmail">carregando...</strong>
+
+    <strong id="professorEmail">
+      carregando...
+    </strong>
+
   </div>
 
-  <nav class="menu-navegacao" aria-label="Menu do professor">
-    <button class="menu-botao ativo" data-pagina="inicio">Inicio</button>
-    <button class="menu-botao" data-pagina="aulas">Aulas e tarefas</button>
-    <button class="menu-botao" data-pagina="entregas">Entregas por ID</button>
-    <button class="menu-botao" data-pagina="chamada">Chamada</button>
-    <button class="menu-botao" data-pagina="guildas">Guildas</button>
-    <button class="menu-botao" data-pagina="ranking">Ranking e XP</button>
-    <button class="menu-botao" data-pagina="comunica">Comunica SP</button>
-    <button class="menu-botao" data-pagina="totens">Totens / provas</button>
-    <button class="menu-botao" data-pagina="tokens">Tokens</button>
-    <button class="menu-botao" data-pagina="relatorios">Relatorios</button>
-    <button class="menu-botao" data-pagina="mural">Mural de avisos</button>
-    <button class="menu-botao" id="documentosBtn">Documentos</button>
+
+<!----------Navegação--------------------->
+
+  <nav
+    class="menu-navegacao"
+    aria-label="Menu do professor"
+  >
+
+
+    <button
+      class="menu-botao ativo"
+      data-pagina="inicio"
+    >
+      Inicio
+    </button>
+
+
+    <button
+      class="menu-botao"
+      data-pagina="aulas"
+    >
+      Aulas e tarefas
+    </button>
+
+
+    <button
+      class="menu-botao"
+      data-pagina="entregas"
+    >
+      Entregas por ID
+    </button>
+
+
+    <button
+      class="menu-botao"
+      data-pagina="chamada"
+    >
+      Chamada
+    </button>
+
+
+    <button
+      class="menu-botao"
+      data-pagina="guildas"
+    >
+      Guildas
+    </button>
+
+
+    <button
+      class="menu-botao"
+      data-pagina="ranking"
+    >
+      Ranking e XP
+    </button>
+
+
+    <button
+      class="menu-botao"
+      data-pagina="comunica"
+    >
+      Comunica SP
+    </button>
+
+
+    <button
+      class="menu-botao"
+      data-pagina="totens"
+    >
+      Totens / provas
+    </button>
+
+
+    <button
+      class="menu-botao"
+      data-pagina="tokens"
+    >
+      Tokens
+    </button>
+
+
+    <button
+      class="menu-botao"
+      data-pagina="relatorios"
+    >
+      Relatorios
+    </button>
+
+
+    <button
+      class="menu-botao"
+      data-pagina="mural"
+    >
+      Mural de avisos
+    </button>
+
+
+    <button
+      class="menu-botao"
+      id="documentosBtn"
+    >
+      Documentos
+    </button>
+
+
   </nav>
 
+
+<!----------Rodapé do menu--------------------->
+
   <div class="menu-rodape">
-    <button id="atualizarTudoBtn">Atualizar dados</button>
-    <button id="sairBtn">Sair</button>
+
+
+    <button id="atualizarTudoBtn">
+
+      Atualizar dados
+
+    </button>
+
+
+    <button id="sairBtn">
+
+      Sair
+
+    </button>
+
+
   </div>
+
+
 </aside>
+
 
 <!----------Conteudo principal--------------------->
 
 <main class="conteudo">
-  <header class="topo">
-    <div>
-      <h1 id="tituloPagina">Painel do Professor</h1>
-      <p id="subtituloPagina">Administracao do prototipo Sala do Futuro V2.</p>
-    </div>
-    <div class="status-firebase" id="statusFirebase">Firebase: verificando...</div>
-  </header>
 
-<!----------Inicio--------------------->
 
-<section class="pagina ativa" id="pagina-inicio">
-  <div class="metricas">
-    <div class="metrica">Tarefas<strong id="metricaTarefas">0</strong></div>
-    <div class="metrica">Alunos<strong id="metricaAlunos">0</strong></div>
-    <div class="metrica">Guildas pendentes<strong id="metricaGuildas">0</strong></div>
-    <div class="metrica">Avisos<strong id="metricaAvisos">0</strong></div>
+<!----------Topo--------------------->
+
+<header class="topo">
+
+
+  <div>
+
+    <h1 id="tituloPagina">
+
+      Painel do Professor
+
+    </h1>
+
+
+    <p id="subtituloPagina">
+
+      Administracao do prototipo
+      Sala do Futuro V2.
+
+    </p>
+
   </div>
 
-  <div class="grade" style="margin-top:16px;">
-    <article class="card">
-      <h2>Fluxo rapido</h2>
-      <p>Registre uma aula e coloque uma tarefa por linha. Ao salvar a aula, cada linha vira uma tarefa no Firestore com seu proprio ID.</p>
-      <div class="acoes">
-        <button class="botao primario ir-pagina" data-ir="aulas">Registrar aula</button>
-        <button class="botao ir-pagina" data-ir="chamada">Fazer chamada</button>
-      </div>
-    </article>
 
-    <article class="card">
-      <h2>Progresso</h2>
-      <p>O ranking usa o campo <span class="codigo">xp</span> de <span class="codigo">usuarios</span>. O professor pode conceder no maximo 50 XP por vez.</p>
-      <div class="acoes">
-        <button class="botao ir-pagina" data-ir="ranking">Abrir ranking</button>
-        <button class="botao ir-pagina" data-ir="guildas">Ver guildas</button>
-      </div>
-    </article>
+  <div
+    class="status-firebase"
+    id="statusFirebase"
+  >
 
-    <article class="card largo">
-      <h2>Estrutura esperada do aluno</h2>
-      <p><span class="codigo">usuarios/{uid}</span> precisa ter pelo menos: <span class="codigo">nome</span>, <span class="codigo">tipo: "aluno"</span>, <span class="codigo">turma</span>, <span class="codigo">escolaId</span> e <span class="codigo">xp</span>.</p>
-    </article>
+    Firebase: verificando...
+
   </div>
-</section>
 
-<!----------Aulas e tarefas--------------------->
 
-<section class="pagina" id="pagina-aulas">
-  <div class="grade">
-    <article class="card">
-      <h2>Registrar aula</h2>
-      <p>Uma tarefa por linha. Ao registrar a aula, elas sobem automaticamente.</p>
-      <form id="aulaForm">
-        <div class="form-grid">
-          <div class="campo"><label for="aulaTitulo">Titulo da aula</label><input id="aulaTitulo" required placeholder="Ex.: Equacoes do 1 grau"></div>
-          <div class="campo"><label for="aulaTurma">Turma</label><input id="aulaTurma" required placeholder="Ex.: 8A"></div>
-          <div class="campo"><label for="aulaData">Data</label><input id="aulaData" type="date" required></div>
-          <div class="campo"><label for="aulaXp">XP por tarefa</label><input id="aulaXp" type="number" min="0" max="50" value="10" required></div>
-          <div class="campo completo"><label for="aulaConteudo">Conteudo / resumo</label><textarea id="aulaConteudo"></textarea></div>
-          <div class="campo completo"><label for="aulaTarefas">Tarefas da aula - uma por linha</label><textarea id="aulaTarefas" placeholder="Exercicio 1&#10;Atividade no caderno&#10;Quiz de revisao"></textarea></div>
-          <div class="campo"><label for="aulaPrazo">Prazo das tarefas</label><input id="aulaPrazo" type="date"></div>
-        </div>
-        <div class="acoes"><button class="botao primario" type="submit">Registrar aula e publicar tarefas</button></div>
-        <div class="mensagem" id="aulaMensagem"></div>
-      </form>
-    </article>
+</header>
 
-    <article class="card">
-      <h2>Publicar tarefa manual</h2>
-      <form id="tarefaForm">
-        <div class="form-grid">
-          <div class="campo completo"><label for="tarefaTitulo">Titulo</label><input id="tarefaTitulo" required></div>
-          <div class="campo"><label for="tarefaTurma">Turma</label><input id="tarefaTurma" required placeholder="Ex.: 8A"></div>
-          <div class="campo"><label for="tarefaXp">XP</label><input id="tarefaXp" type="number" min="0" max="50" value="10" required></div>
-          <div class="campo"><label for="tarefaPrazo">Prazo</label><input id="tarefaPrazo" type="date"></div>
-          <div class="campo completo"><label for="tarefaDescricao">Descricao</label><textarea id="tarefaDescricao"></textarea></div>
-        </div>
-        <div class="acoes"><button class="botao primario" type="submit">Publicar tarefa</button></div>
-        <div class="mensagem" id="tarefaMensagem"></div>
-      </form>
-    </article>
 
-    <article class="card largo">
-      <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;">
-        <div><h2 style="margin-bottom:4px;">Ultimas tarefas</h2><p style="margin-top:0;">Use o ID na tela Entregas por ID.</p></div>
-        <button class="botao" id="carregarTarefasBtn">Atualizar</button>
-      </div>
-      <div class="tabela-wrap"><table><thead><tr><th>ID</th><th>Titulo</th><th>Turma</th><th>XP</th><th>Prazo</th></tr></thead><tbody id="tarefasTabela"></tbody></table></div>
-    </article>
+<!========================================
+INICIO
+========================================>
+
+
+<section
+  class="pagina ativa"
+  id="pagina-inicio"
+>
+
+
+<!----------Metricas--------------------->
+
+<div class="metricas">
+
+
+  <div class="metrica">
+
+    Tarefas
+
+    <strong id="metricaTarefas">
+      0
+    </strong>
+
   </div>
-</section>
 
-<!----------Entregas por ID--------------------->
 
-<section class="pagina" id="pagina-entregas">
-  <article class="card largo">
-    <h2>Ver alunos que fizeram uma tarefa</h2>
-    <p>Cole o ID da tarefa. A busca usa <span class="codigo">entregas.tarefaId</span>.</p>
-    <div class="form-grid"><div class="campo completo"><label for="entregaTarefaId">ID da tarefa</label><input id="entregaTarefaId" placeholder="Cole o ID gerado pelo Firestore"></div></div>
-    <div class="acoes"><button class="botao primario" id="buscarEntregasBtn">Buscar entregas</button></div>
-    <div class="mensagem" id="entregaMensagem"></div>
-    <div class="tabela-wrap" style="margin-top:16px;"><table><thead><tr><th>Aluno</th><th>Aluno ID</th><th>Status</th><th>Entregue em</th></tr></thead><tbody id="entregasTabela"></tbody></table></div>
-  </article>
-</section>
+  <div class="metrica">
 
-<!----------Chamada--------------------->
+    Alunos
 
-<section class="pagina" id="pagina-chamada">
-  <article class="card largo">
-    <h2>Chamada e comportamento</h2>
-    <div class="form-grid">
-      <div class="campo"><label for="chamadaTurma">Turma</label><input id="chamadaTurma" placeholder="Ex.: 8A"></div>
-      <div class="campo"><label for="chamadaData">Data</label><input id="chamadaData" type="date"></div>
-    </div>
-    <div class="acoes"><button class="botao" id="carregarChamadaBtn">Carregar alunos</button><button class="botao primario" id="salvarChamadaBtn">Salvar chamada</button></div>
-    <div class="mensagem" id="chamadaMensagem"></div>
-    <div id="listaChamada" style="margin-top:16px;border:1px solid #e1e9f1;border-radius:14px;overflow:hidden;background:white;"><div class="vazio">Informe uma turma e carregue os alunos.</div></div>
-  </article>
-</section>
+    <strong id="metricaAlunos">
+      0
+    </strong>
 
-<!----------Guildas--------------------->
-
-<section class="pagina" id="pagina-guildas">
-  <article class="card largo">
-    <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;">
-      <div><h2 style="margin-bottom:4px;">Guildas enviadas pelos alunos</h2><p style="margin-top:0;">Aprove, rejeite ou acompanhe o status.</p></div>
-      <button class="botao" id="carregarGuildasBtn">Atualizar</button>
-    </div>
-    <div class="tabela-wrap"><table><thead><tr><th>Guilda</th><th>Turma</th><th>Membros</th><th>Status</th><th>Acoes</th></tr></thead><tbody id="guildasTabela"></tbody></table></div>
-    <div class="mensagem" id="guildaMensagem"></div>
-  </article>
-</section>
-
-<!----------Ranking e XP--------------------->
-
-<section class="pagina" id="pagina-ranking">
-  <div class="grade">
-    <article class="card largo">
-      <h2>Ranking individual</h2>
-      <div class="form-grid"><div class="campo"><label for="rankingTurma">Filtrar turma</label><input id="rankingTurma" placeholder="Ex.: 8A ou deixe vazio"></div></div>
-      <div class="acoes"><button class="botao primario" id="carregarRankingBtn">Carregar ranking</button></div>
-      <p>O professor pode conceder de 1 a 50 XP por operacao.</p>
-      <div class="tabela-wrap"><table><thead><tr><th>#</th><th>Aluno</th><th>Turma</th><th>XP</th><th>Dar XP</th></tr></thead><tbody id="rankingTabela"></tbody></table></div>
-      <div class="mensagem" id="rankingMensagem"></div>
-    </article>
-
-    <article class="card largo">
-      <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;">
-        <div><h2 style="margin-bottom:4px;">Ranking global da escola</h2><p style="margin-top:0;">Todos os alunos ordenados pelo XP.</p></div>
-        <button class="botao" id="carregarGlobalBtn">Atualizar</button>
-      </div>
-      <div class="tabela-wrap"><table><thead><tr><th>#</th><th>Aluno</th><th>Turma</th><th>Escola</th><th>XP</th></tr></thead><tbody id="globalTabela"></tbody></table></div>
-    </article>
   </div>
+
+
+  <div class="metrica">
+
+    Guildas pendentes
+
+    <strong id="metricaGuildas">
+      0
+    </strong>
+
+  </div>
+
+
+  <div class="metrica">
+
+    Avisos
+
+    <strong id="metricaAvisos">
+      0
+    </strong>
+
+  </div>
+
+
+</div>
+
+
+<!----------Cards iniciais--------------------->
+
+<div
+  class="grade"
+  style="margin-top:16px;"
+>
+
+
+<article class="card">
+
+
+  <h2>
+    Fluxo rapido
+  </h2>
+
+
+  <p>
+
+    Registre uma aula e coloque
+    uma tarefa por linha.
+
+    Ao salvar a aula,
+    cada linha vira uma tarefa
+    no Firebase com seu proprio ID.
+
+  </p>
+
+
+  <div class="acoes">
+
+
+    <button
+      class="botao primario ir-pagina"
+      data-ir="aulas"
+    >
+
+      Registrar aula
+
+    </button>
+
+
+    <button
+      class="botao ir-pagina"
+      data-ir="chamada"
+    >
+
+      Fazer chamada
+
+    </button>
+
+
+  </div>
+
+
+</article>
+
+
+<article class="card">
+
+
+  <h2>
+    Progresso
+  </h2>
+
+
+  <p>
+
+    O ranking usa o campo
+
+    <span class="codigo">
+      xp
+    </span>
+
+    de
+
+    <span class="codigo">
+      usuarios
+    </span>.
+
+    O professor pode conceder
+    no maximo 50 XP por vez.
+
+  </p>
+
+
+  <div class="acoes">
+
+
+    <button
+      class="botao ir-pagina"
+      data-ir="ranking"
+    >
+
+      Abrir ranking
+
+    </button>
+
+
+    <button
+      class="botao ir-pagina"
+      data-ir="guildas"
+    >
+
+      Ver guildas
+
+    </button>
+
+
+  </div>
+
+
+</article>
+
+
+<article class="card largo">
+
+
+  <h2>
+    Estrutura esperada do aluno
+  </h2>
+
+
+  <p>
+
+    <span class="codigo">
+      usuarios/{uid}
+    </span>
+
+    precisa ter pelo menos:
+
+    <span class="codigo">
+      nome
+    </span>,
+
+    <span class="codigo">
+      tipo: "aluno"
+    </span>,
+
+    <span class="codigo">
+      turma
+    </span>,
+
+    <span class="codigo">
+      escolaId
+    </span>
+
+    e
+
+    <span class="codigo">
+      xp
+    </span>.
+
+  </p>
+
+
+</article>
+
+
+</div>
+
+
 </section>
 
-<!----------Comunica SP--------------------->
 
-<section class="pagina" id="pagina-comunica">
-  <article class="card largo">
-    <h2>Comunica SP</h2>
-    <form id="comunicaForm">
-      <div class="form-grid">
-        <div class="campo"><label for="comunicaDestino">Destino</label><input id="comunicaDestino" placeholder="Ex.: 8A, todos, aluno@email"></div>
-        <div class="campo"><label for="comunicaTitulo">Titulo</label><input id="comunicaTitulo" required></div>
-        <div class="campo completo"><label for="comunicaMensagemTexto">Mensagem</label><textarea id="comunicaMensagemTexto" required></textarea></div>
-      </div>
-      <div class="acoes"><button class="botao primario" type="submit">Enviar mensagem</button></div>
-      <div class="mensagem" id="comunicaMensagem"></div>
-    </form>
-  </article>
+<!========================================
+AULAS E TAREFAS
+========================================>
+
+
+<section
+  class="pagina"
+  id="pagina-aulas"
+>
+
+
+<div class="grade">
+
+
+<!----------Registrar aula--------------------->
+
+<article class="card">
+
+
+  <h2>
+    Registrar aula
+  </h2>
+
+
+  <p>
+
+    Uma tarefa por linha.
+
+    Ao registrar a aula,
+    elas sobem automaticamente.
+
+  </p>
+
+
+<form id="aulaForm">
+
+
+<div class="form-grid">
+
+
+<div class="campo">
+
+  <label for="aulaTitulo">
+
+    Titulo da aula
+
+  </label>
+
+  <input
+    id="aulaTitulo"
+    required
+    placeholder="Ex.: Equacoes do 1 grau"
+  >
+
+</div>
+
+
+<div class="campo">
+
+  <label for="aulaTurma">
+
+    Turma
+
+  </label>
+
+  <input
+    id="aulaTurma"
+    required
+    placeholder="Ex.: 8A"
+  >
+
+</div>
+
+
+<div class="campo">
+
+  <label for="aulaData">
+
+    Data
+
+  </label>
+
+  <input
+    id="aulaData"
+    type="date"
+    required
+  >
+
+</div>
+
+
+<div class="campo">
+
+  <label for="aulaXp">
+
+    XP por tarefa
+
+  </label>
+
+  <input
+    id="aulaXp"
+    type="number"
+    min="0"
+    max="50"
+    value="10"
+    required
+  >
+
+</div>
+
+
+<div class="campo completo">
+
+  <label for="aulaConteudo">
+
+    Conteudo / resumo
+
+  </label>
+
+  <textarea id="aulaConteudo">
+  </textarea>
+
+</div>
+
+
+<div class="campo completo">
+
+  <label for="aulaTarefas">
+
+    Tarefas da aula
+    - uma por linha
+
+  </label>
+
+  <textarea
+    id="aulaTarefas"
+    placeholder="Exercicio 1&#10;Atividade no caderno&#10;Quiz de revisao"
+  ></textarea>
+
+</div>
+
+
+<div class="campo">
+
+  <label for="aulaPrazo">
+
+    Prazo das tarefas
+
+  </label>
+
+  <input
+    id="aulaPrazo"
+    type="date"
+  >
+
+</div>
+
+
+</div>
+
+
+<div class="acoes">
+
+  <button
+    class="botao primario"
+    type="submit"
+  >
+
+    Registrar aula e publicar tarefas
+
+  </button>
+
+</div>
+
+
+<div
+  class="mensagem"
+  id="aulaMensagem"
+>
+</div>
+
+
+</form>
+
+
+</article>
+
+
+<!----------Tarefa manual--------------------->
+
+<article class="card">
+
+
+<h2>
+  Publicar tarefa manual
+</h2>
+
+
+<form id="tarefaForm">
+
+
+<div class="form-grid">
+
+
+<div class="campo completo">
+
+  <label for="tarefaTitulo">
+
+    Titulo
+
+  </label>
+
+  <input
+    id="tarefaTitulo"
+    required
+  >
+
+</div>
+
+
+<div class="campo">
+
+  <label for="tarefaTurma">
+
+    Turma
+
+  </label>
+
+  <input
+    id="tarefaTurma"
+    required
+    placeholder="Ex.: 8A"
+  >
+
+</div>
+
+
+<div class="campo">
+
+  <label for="tarefaXp">
+
+    XP
+
+  </label>
+
+  <input
+    id="tarefaXp"
+    type="number"
+    min="0"
+    max="50"
+    value="10"
+    required
+  >
+
+</div>
+
+
+<div class="campo">
+
+  <label for="tarefaPrazo">
+
+    Prazo
+
+  </label>
+
+  <input
+    id="tarefaPrazo"
+    type="date"
+  >
+
+</div>
+
+
+<div class="campo completo">
+
+  <label for="tarefaDescricao">
+
+    Descricao
+
+  </label>
+
+  <textarea id="tarefaDescricao">
+  </textarea>
+
+</div>
+
+
+</div>
+
+
+<div class="acoes">
+
+  <button
+    class="botao primario"
+    type="submit"
+  >
+
+    Publicar tarefa
+
+  </button>
+
+</div>
+
+
+<div
+  class="mensagem"
+  id="tarefaMensagem"
+>
+</div>
+
+
+</form>
+
+
+</article>
+
+
+<!----------Ultimas tarefas--------------------->
+
+<article class="card largo">
+
+
+<div class="titulo-card">
+
+
+  <div>
+
+    <h2>
+      Ultimas tarefas
+    </h2>
+
+    <p>
+      Use o ID na tela
+      Entregas por ID.
+    </p>
+
+  </div>
+
+
+  <button
+    class="botao"
+    id="carregarTarefasBtn"
+  >
+
+    Atualizar
+
+  </button>
+
+
+</div>
+
+
+<div class="tabela-wrap">
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+  <th>ID</th>
+
+  <th>Titulo</th>
+
+  <th>Turma</th>
+
+  <th>XP</th>
+
+  <th>Prazo</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="tarefasTabela">
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</article>
+
+
+</div>
+
+
 </section>
 
-<!----------Totens--------------------->
 
-<section class="pagina" id="pagina-totens">
-  <article class="card largo">
-    <h2>Criar totem de atividade / prova</h2>
-    <form id="totemForm">
-      <div class="form-grid">
-        <div class="campo"><label for="totemTitulo">Titulo</label><input id="totemTitulo" required></div>
-        <div class="campo"><label for="totemTurma">Turma</label><input id="totemTurma" required placeholder="Ex.: 8A"></div>
-        <div class="campo"><label for="totemTarefaId">ID da tarefa vinculada</label><input id="totemTarefaId" placeholder="Opcional"></div>
-        <div class="campo"><label for="totemTipo">Tipo</label><select id="totemTipo"><option value="atividade">Atividade</option><option value="prova">Prova</option><option value="quiz">Quiz</option></select></div>
-        <div class="campo completo"><label for="totemDescricao">Descricao</label><textarea id="totemDescricao"></textarea></div>
-      </div>
-      <div class="acoes"><button class="botao primario" type="submit">Criar totem</button></div>
-      <div class="mensagem" id="totemMensagem"></div>
-    </form>
-  </article>
+<!========================================
+ENTREGAS
+========================================>
+
+
+<section
+  class="pagina"
+  id="pagina-entregas"
+>
+
+
+<article class="card largo">
+
+
+<h2>
+  Ver alunos que fizeram uma tarefa
+</h2>
+
+
+<p>
+
+  Cole o ID da tarefa.
+
+  A busca usa
+
+  <span class="codigo">
+    entregas.tarefaId
+  </span>.
+
+</p>
+
+
+<div class="form-grid">
+
+
+<div class="campo completo">
+
+  <label for="entregaTarefaId">
+
+    ID da tarefa
+
+  </label>
+
+  <input
+    id="entregaTarefaId"
+    placeholder="Cole o ID gerado pelo Firebase"
+  >
+
+</div>
+
+
+</div>
+
+
+<div class="acoes">
+
+  <button
+    class="botao primario"
+    id="buscarEntregasBtn"
+  >
+
+    Buscar entregas
+
+  </button>
+
+</div>
+
+
+<div
+  class="mensagem"
+  id="entregaMensagem"
+>
+</div>
+
+
+<div
+  class="tabela-wrap"
+  style="margin-top:16px;"
+>
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+  <th>Aluno</th>
+
+  <th>Aluno ID</th>
+
+  <th>Status</th>
+
+  <th>Entregue em</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="entregasTabela">
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</article>
+
+
 </section>
 
-<!----------Tokens--------------------->
 
-<section class="pagina" id="pagina-tokens">
-  <article class="card largo">
-    <h2>Geracao de tokens</h2>
-    <div class="form-grid">
-      <div class="campo"><label for="tokenTipo">Tipo</label><select id="tokenTipo"><option value="atividade">Atividade</option><option value="prova">Prova</option><option value="acesso">Acesso</option></select></div>
-      <div class="campo"><label for="tokenValidade">Validade em minutos</label><input id="tokenValidade" type="number" min="1" max="1440" value="60"></div>
-    </div>
-    <div class="acoes"><button class="botao primario" id="gerarTokenBtn">Gerar token</button></div>
-    <div class="mensagem" id="tokenMensagem"></div>
-  </article>
+<!========================================
+CHAMADA
+========================================>
+
+
+<section
+  class="pagina"
+  id="pagina-chamada"
+>
+
+
+<article class="card largo">
+
+
+<h2>
+  Chamada e comportamento
+</h2>
+
+
+<div class="form-grid">
+
+
+<div class="campo">
+
+  <label for="chamadaTurma">
+
+    Turma
+
+  </label>
+
+  <input
+    id="chamadaTurma"
+    placeholder="Ex.: 8A"
+  >
+
+</div>
+
+
+<div class="campo">
+
+  <label for="chamadaData">
+
+    Data
+
+  </label>
+
+  <input
+    id="chamadaData"
+    type="date"
+  >
+
+</div>
+
+
+</div>
+
+
+<div class="acoes">
+
+
+<button
+  class="botao"
+  id="carregarChamadaBtn"
+>
+
+  Carregar alunos
+
+</button>
+
+
+<button
+  class="botao primario"
+  id="salvarChamadaBtn"
+>
+
+  Salvar chamada
+
+</button>
+
+
+</div>
+
+
+<div
+  class="mensagem"
+  id="chamadaMensagem"
+>
+</div>
+
+
+<div
+  id="listaChamada"
+  class="lista-chamada"
+>
+
+  <div class="vazio">
+
+    Informe uma turma
+    e carregue os alunos.
+
+  </div>
+
+</div>
+
+
+</article>
+
+
 </section>
 
-<!----------Relatorios--------------------->
 
-<section class="pagina" id="pagina-relatorios">
-  <article class="card largo">
-    <h2>Enviar relatorio</h2>
-    <form id="relatorioForm">
-      <div class="form-grid">
-        <div class="campo"><label for="relatorioTipo">Tipo</label><select id="relatorioTipo"><option value="turma">Turma</option><option value="atividade">Atividade</option><option value="comportamento">Comportamento</option><option value="outro">Outro</option></select></div>
-        <div class="campo"><label for="relatorioTurma">Turma / referencia</label><input id="relatorioTurma"></div>
-        <div class="campo completo"><label for="relatorioTexto">Relatorio</label><textarea id="relatorioTexto" required></textarea></div>
-      </div>
-      <div class="acoes"><button class="botao primario" type="submit">Enviar relatorio</button></div>
-      <div class="mensagem" id="relatorioMensagem"></div>
-    </form>
-  </article>
+<!========================================
+GUILDAS
+========================================>
+
+
+<section
+  class="pagina"
+  id="pagina-guildas"
+>
+
+
+<article class="card largo">
+
+
+<div class="titulo-card">
+
+
+<div>
+
+  <h2>
+    Guildas enviadas pelos alunos
+  </h2>
+
+  <p>
+
+    Aprove,
+    rejeite
+    ou acompanhe o status.
+
+  </p>
+
+</div>
+
+
+<button
+  class="botao"
+  id="carregarGuildasBtn"
+>
+
+  Atualizar
+
+</button>
+
+
+</div>
+
+
+<div class="tabela-wrap">
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+  <th>Guilda</th>
+
+  <th>Turma</th>
+
+  <th>Membros</th>
+
+  <th>Status</th>
+
+  <th>Acoes</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="guildasTabela">
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+<div
+  class="mensagem"
+  id="guildaMensagem"
+>
+</div>
+
+
+</article>
+
+
 </section>
 
-<!----------Mural de avisos--------------------->
 
-<section class="pagina" id="pagina-mural">
-  <article class="card largo">
-    <h2>Mural de avisos</h2>
-    <p>O aviso salva <span class="codigo">notificar: true</span>. A area do aluno pode escutar a colecao <span class="codigo">avisos</span> para exibir notificacoes.</p>
-    <form id="avisoForm">
-      <div class="form-grid">
-        <div class="campo"><label for="avisoTitulo">Titulo</label><input id="avisoTitulo" required></div>
-        <div class="campo"><label for="avisoTurma">Turma / destino</label><input id="avisoTurma" placeholder="Ex.: 8A ou todos"></div>
-        <div class="campo completo"><label for="avisoTexto">Aviso</label><textarea id="avisoTexto" required></textarea></div>
-      </div>
-      <div class="acoes"><button class="botao primario" type="submit">Publicar aviso</button></div>
-      <div class="mensagem" id="avisoMensagem"></div>
-    </form>
-  </article>
+<!========================================
+RANKING
+========================================>
+
+
+<section
+  class="pagina"
+  id="pagina-ranking"
+>
+
+
+<div class="grade">
+
+
+<!----------Ranking individual--------------------->
+
+<article class="card largo">
+
+
+<h2>
+  Ranking individual
+</h2>
+
+
+<div class="form-grid">
+
+
+<div class="campo">
+
+  <label for="rankingTurma">
+
+    Filtrar turma
+
+  </label>
+
+  <input
+    id="rankingTurma"
+    placeholder="Ex.: 8A ou deixe vazio"
+  >
+
+</div>
+
+
+</div>
+
+
+<div class="acoes">
+
+  <button
+    class="botao primario"
+    id="carregarRankingBtn"
+  >
+
+    Carregar ranking
+
+  </button>
+
+</div>
+
+
+<p>
+
+  O professor pode conceder
+  de 1 a 50 XP por operacao.
+
+</p>
+
+
+<div class="tabela-wrap">
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+  <th>#</th>
+
+  <th>Aluno</th>
+
+  <th>Turma</th>
+
+  <th>XP</th>
+
+  <th>Dar XP</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="rankingTabela">
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+<div
+  class="mensagem"
+  id="rankingMensagem"
+>
+</div>
+
+
+</article>
+
+
+<!----------Ranking global--------------------->
+
+<article class="card largo">
+
+
+<div class="titulo-card">
+
+
+<div>
+
+  <h2>
+    Ranking global da escola
+  </h2>
+
+  <p>
+
+    Todos os alunos
+    ordenados pelo XP.
+
+  </p>
+
+</div>
+
+
+<button
+  class="botao"
+  id="carregarGlobalBtn"
+>
+
+  Atualizar
+
+</button>
+
+
+</div>
+
+
+<div class="tabela-wrap">
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+  <th>#</th>
+
+  <th>Aluno</th>
+
+  <th>Turma</th>
+
+  <th>Escola</th>
+
+  <th>XP</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="globalTabela">
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</article>
+
+
+</div>
+
+
 </section>
+
+
+<!========================================
+COMUNICA SP
+========================================>
+
+
+<section
+  class="pagina"
+  id="pagina-comunica"
+>
+
+
+<article class="card largo">
+
+
+<h2>
+  Comunica SP
+</h2>
+
+
+<form id="comunicaForm">
+
+
+<div class="form-grid">
+
+
+<div class="campo">
+
+  <label for="comunicaDestino">
+
+    Destino
+
+  </label>
+
+  <input
+    id="comunicaDestino"
+    placeholder="Ex.: 8A, todos, aluno@email"
+  >
+
+</div>
+
+
+<div class="campo">
+
+  <label for="comunicaTitulo">
+
+    Titulo
+
+  </label>
+
+  <input
+    id="comunicaTitulo"
+    required
+  >
+
+</div>
+
+
+<div class="campo completo">
+
+  <label for="comunicaMensagemTexto">
+
+    Mensagem
+
+  </label>
+
+  <textarea
+    id="comunicaMensagemTexto"
+    required
+  ></textarea>
+
+</div>
+
+
+</div>
+
+
+<div class="acoes">
+
+  <button
+    class="botao primario"
+    type="submit"
+  >
+
+    Enviar mensagem
+
+  </button>
+
+</div>
+
+
+<div
+  class="mensagem"
+  id="comunicaMensagem"
+>
+</div>
+
+
+</form>
+
+
+</article>
+
+
+</section>
+
+
+<!========================================
+TOTENS
+========================================>
+
+
+<section
+  class="pagina"
+  id="pagina-totens"
+>
+
+
+<article class="card largo">
+
+
+<h2>
+  Criar totem de atividade / prova
+</h2>
+
+
+<form id="totemForm">
+
+
+<div class="form-grid">
+
+
+<div class="campo">
+
+  <label for="totemTitulo">
+
+    Titulo
+
+  </label>
+
+  <input
+    id="totemTitulo"
+    required
+  >
+
+</div>
+
+
+<div class="campo">
+
+  <label for="totemTurma">
+
+    Turma
+
+  </label>
+
+  <input
+    id="totemTurma"
+    required
+    placeholder="Ex.: 8A"
+  >
+
+</div>
+
+
+<div class="campo">
+
+  <label for="totemTarefaId">
+
+    ID da tarefa vinculada
+
+  </label>
+
+  <input
+    id="totemTarefaId"
+    placeholder="Opcional"
+  >
+
+</div>
+
+
+<div class="campo">
+
+  <label for="totemTipo">
+
+    Tipo
+
+  </label>
+
+  <select id="totemTipo">
+
+    <option value="atividade">
+      Atividade
+    </option>
+
+    <option value="prova">
+      Prova
+    </option>
+
+    <option value="quiz">
+      Quiz
+    </option>
+
+  </select>
+
+</div>
+
+
+<div class="campo completo">
+
+  <label for="totemDescricao">
+
+    Descricao
+
+  </label>
+
+  <textarea id="totemDescricao">
+  </textarea>
+
+</div>
+
+
+</div>
+
+
+<div class="acoes">
+
+  <button
+    class="botao primario"
+    type="submit"
+  >
+
+    Criar totem
+
+  </button>
+
+</div>
+
+
+<div
+  class="mensagem"
+  id="totemMensagem"
+>
+</div>
+
+
+</form>
+
+
+</article>
+
+
+</section>
+
+
+<!========================================
+TOKENS
+========================================>
+
+
+<section
+  class="pagina"
+  id="pagina-tokens"
+>
+
+
+<article class="card largo">
+
+
+<h2>
+  Geracao de tokens
+</h2>
+
+
+<div class="form-grid">
+
+
+<div class="campo">
+
+  <label for="tokenTipo">
+
+    Tipo
+
+  </label>
+
+  <select id="tokenTipo">
+
+    <option value="atividade">
+      Atividade
+    </option>
+
+    <option value="prova">
+      Prova
+    </option>
+
+    <option value="acesso">
+      Acesso
+    </option>
+
+  </select>
+
+</div>
+
+
+<div class="campo">
+
+  <label for="tokenValidade">
+
+    Validade em minutos
+
+  </label>
+
+  <input
+    id="tokenValidade"
+    type="number"
+    min="1"
+    max="1440"
+    value="60"
+  >
+
+</div>
+
+
+</div>
+
+
+<div class="acoes">
+
+  <button
+    class="botao primario"
+    id="gerarTokenBtn"
+  >
+
+    Gerar token
+
+  </button>
+
+</div>
+
+
+<div
+  class="mensagem"
+  id="tokenMensagem"
+>
+</div>
+
+
+</article>
+
+
+</section>
+
+
+<!========================================
+RELATORIOS
+========================================>
+
+
+<section
+  class="pagina"
+  id="pagina-relatorios"
+>
+
+
+<article class="card largo">
+
+
+<h2>
+  Enviar relatorio
+</h2>
+
+
+<form id="relatorioForm">
+
+
+<div class="form-grid">
+
+
+<div class="campo">
+
+  <label for="relatorioTipo">
+
+    Tipo
+
+  </label>
+
+  <select id="relatorioTipo">
+
+    <option value="turma">
+      Turma
+    </option>
+
+    <option value="atividade">
+      Atividade
+    </option>
+
+    <option value="comportamento">
+      Comportamento
+    </option>
+
+    <option value="outro">
+      Outro
+    </option>
+
+  </select>
+
+</div>
+
+
+<div class="campo">
+
+  <label for="relatorioTurma">
+
+    Turma / referencia
+
+  </label>
+
+  <input id="relatorioTurma">
+
+</div>
+
+
+<div class="campo completo">
+
+  <label for="relatorioTexto">
+
+    Relatorio
+
+  </label>
+
+  <textarea
+    id="relatorioTexto"
+    required
+  ></textarea>
+
+</div>
+
+
+</div>
+
+
+<div class="acoes">
+
+  <button
+    class="botao primario"
+    type="submit"
+  >
+
+    Enviar relatorio
+
+  </button>
+
+</div>
+
+
+<div
+  class="mensagem"
+  id="relatorioMensagem"
+>
+</div>
+
+
+</form>
+
+
+</article>
+
+
+</section>
+
+
+<!========================================
+MURAL
+========================================>
+
+
+<section
+  class="pagina"
+  id="pagina-mural"
+>
+
+
+<article class="card largo">
+
+
+<h2>
+  Mural de avisos
+</h2>
+
+
+<p>
+
+  O aviso salva
+
+  <span class="codigo">
+    notificar: true
+  </span>.
+
+  A area do aluno pode
+  ler a colecao
+
+  <span class="codigo">
+    avisos
+  </span>
+
+  para exibir notificacoes.
+
+</p>
+
+
+<form id="avisoForm">
+
+
+<div class="form-grid">
+
+
+<div class="campo">
+
+  <label for="avisoTitulo">
+
+    Titulo
+
+  </label>
+
+  <input
+    id="avisoTitulo"
+    required
+  >
+
+</div>
+
+
+<div class="campo">
+
+  <label for="avisoTurma">
+
+    Turma / destino
+
+  </label>
+
+  <input
+    id="avisoTurma"
+    placeholder="Ex.: 8A ou todos"
+  >
+
+</div>
+
+
+<div class="campo completo">
+
+  <label for="avisoTexto">
+
+    Aviso
+
+  </label>
+
+  <textarea
+    id="avisoTexto"
+    required
+  ></textarea>
+
+</div>
+
+
+</div>
+
+
+<div class="acoes">
+
+  <button
+    class="botao primario"
+    type="submit"
+  >
+
+    Publicar aviso
+
+  </button>
+
+</div>
+
+
+<div
+  class="mensagem"
+  id="avisoMensagem"
+>
+</div>
+
+
+</form>
+
+
+</article>
+
+
+</section>
+
 
 </main>
+
+
 </div>
+
 
 <!----------Acessibilidade simples--------------------->
 
 <div class="acessibilidade">
-  <details>
-    <summary>Acessibilidade</summary>
-    <div class="acessibilidade-botoes">
-      <button type="button" id="lerPagina">Ler pagina</button>
-      <button type="button" id="lerSelecionado">Ler selecionado</button>
-      <button type="button" id="pararLeitura">Parar leitura</button>
-    </div>
-  </details>
+
+
+<details>
+
+
+<summary>
+
+  Acessibilidade
+
+</summary>
+
+
+<div class="acessibilidade-botoes">
+
+
+<button
+  type="button"
+  id="lerPagina"
+>
+
+  Ler pagina
+
+</button>
+
+
+<button
+  type="button"
+  id="lerSelecionado"
+>
+
+  Ler selecionado
+
+</button>
+
+
+<button
+  type="button"
+  id="pararLeitura"
+>
+
+  Parar leitura
+
+</button>
+
+
 </div>
+
+
+</details>
+
+
+</div>
+
 
 <!----------VLibras--------------------->
 
-<div vw class="enabled">
-  <div vw-access-button class="active"></div>
-  <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+<div
+  vw
+  class="enabled"
+>
+
+
+<div
+  vw-access-button
+  class="active"
+>
 </div>
-<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-<script>if(window.VLibras){new window.VLibras.Widget("https://vlibras.gov.br/app");}</script>
 
-<!----------Firebase e logica do professor--------------------->
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-import { getAuth,onAuthStateChanged,signOut } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import { getFirestore,collection,addDoc,getDocs,getDoc,doc,updateDoc,query,where,serverTimestamp,increment } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+<div vw-plugin-wrapper>
 
-const firebaseConfig={
-  apiKey:"AIzaSyCey_SsTCeHuTKwBaZ-Eo6_7LRa4l-5A80",
-  authDomain:"salafuturov2prot.firebaseapp.com",
-  projectId:"salafuturov2prot",
-  storageBucket:"salafuturov2prot.firebasestorage.app",
-  messagingSenderId:"352042722106",
-  appId:"1:352042722106:web:395ba7ef400d1421426603",
-  measurementId:"G-LW16X3NHH8"
-};
 
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const db=getFirestore(app);
-let usuarioAtual=null;
+<div class="vw-plugin-top-wrapper">
+</div>
 
-function $(id){return document.getElementById(id)}
-function mensagem(id,tipo,texto){const el=$(id);el.className="mensagem mostrar "+tipo;el.textContent=texto}
-function escapeHtml(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
-function dataBonita(v){if(!v)return "-";if(typeof v.toDate==="function")return v.toDate().toLocaleString("pt-BR");return String(v)}
-function turma(v){return String(v||"").trim().toUpperCase().replace(/\s+/g,"")}
-function codigo(t=10){const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";const arr=new Uint32Array(t);crypto.getRandomValues(arr);return [...arr].map(n=>chars[n%chars.length]).join("")}
 
-onAuthStateChanged(auth,async user=>{
-  if(!user){location.href="../login/logingov.html";return}
-  usuarioAtual=user;
-  $("professorEmail").textContent=user.email||user.uid;
-  $("statusFirebase").textContent="Firebase: conectado";
-  try{
-    const s=await getDoc(doc(db,"usuarios",user.uid));
-    if(s.exists()){
-      const p=s.data();
-      if(p.nome)$("professorEmail").textContent=p.nome+" | "+(user.email||"");
-      if(p.tipo&&p.tipo!=="professor"&&p.tipo!=="servidor")$("statusFirebase").textContent="Aviso: perfil nao marcado como professor";
-    }
-  }catch(e){console.error(e)}
-  await atualizarPainel();
-});
+</div>
 
-$("sairBtn").addEventListener("click",async()=>{await signOut(auth);location.href="../login/logingov.html"});
 
-const titulos={inicio:["Painel do Professor","Administracao do prototipo Sala do Futuro V2."],aulas:["Aulas e tarefas","Registre aulas e publique atividades."],entregas:["Entregas por ID","Veja quem concluiu uma atividade usando o ID da tarefa."],chamada:["Chamada","Registre presenca e comportamento."],guildas:["Guildas","Aprove, rejeite e acompanhe grupos."],ranking:["Ranking e XP","Acompanhe progresso individual e global."],comunica:["Comunica SP","Envie mensagens internas."],totens:["Totens / provas","Crie pontos de acesso para atividades e avaliacoes."],tokens:["Tokens","Gere identificadores temporarios do prototipo."],relatorios:["Relatorios","Registre relatorios no Firestore."],mural:["Mural de avisos","Publique avisos para notificacoes dos alunos."]};
-function abrir(nome){document.querySelectorAll(".pagina").forEach(p=>p.classList.remove("ativa"));document.querySelectorAll(".menu-botao[data-pagina]").forEach(b=>b.classList.toggle("ativo",b.dataset.pagina===nome));$("pagina-"+nome)?.classList.add("ativa");const t=titulos[nome]||["Sala do Futuro V2",""];$("tituloPagina").textContent=t[0];$("subtituloPagina").textContent=t[1];scrollTo({top:0,behavior:"smooth"})}
-document.querySelectorAll(".menu-botao[data-pagina]").forEach(b=>b.addEventListener("click",()=>abrir(b.dataset.pagina)));
-document.querySelectorAll(".ir-pagina").forEach(b=>b.addEventListener("click",()=>abrir(b.dataset.ir)));
-$("documentosBtn").addEventListener("click",()=>alert("Acesso a documentos ainda nao foi implementado neste prototipo."));
+</div>
 
-$("aulaForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-  const titulo=$("aulaTitulo").value.trim(),tr=turma($("aulaTurma").value),data=$("aulaData").value,conteudo=$("aulaConteudo").value.trim(),xp=Number($("aulaXp").value),prazo=$("aulaPrazo").value;
-  const tarefas=$("aulaTarefas").value.split("\n").map(x=>x.trim()).filter(Boolean);
-  if(xp<0||xp>50){mensagem("aulaMensagem","erro","XP deve ficar entre 0 e 50.");return}
-  try{
-    mensagem("aulaMensagem","info","Registrando aula...");
-    const aulaRef=await addDoc(collection(db,"aulas"),{titulo,turma:tr,data,conteudo,professorId:usuarioAtual.uid,professorEmail:usuarioAtual.email||"",criadoEm:serverTimestamp()});
-    const ids=[];
-    for(const nome of tarefas){const r=await addDoc(collection(db,"tarefas"),{titulo:nome,descricao:"Tarefa criada automaticamente pela aula: "+titulo,turma:tr,xp,prazo:prazo||null,aulaId:aulaRef.id,professorId:usuarioAtual.uid,professorEmail:usuarioAtual.email||"",ativa:true,criadoEm:serverTimestamp()});ids.push(r.id)}
-    mensagem("aulaMensagem","ok",tarefas.length?`Aula registrada. ${tarefas.length} tarefa(s) publicada(s). IDs: ${ids.join(", ")}`:"Aula registrada sem tarefas.");
-    e.target.reset();$("aulaXp").value=10;$("aulaData").valueAsDate=new Date();await carregarTarefas();await atualizarPainel();
-  }catch(err){console.error(err);mensagem("aulaMensagem","erro","Nao foi possivel registrar a aula. Verifique o Firestore e as regras.")}
-});
 
-$("tarefaForm").addEventListener("submit",async e=>{
-  e.preventDefault();const xp=Number($("tarefaXp").value);if(xp<0||xp>50){mensagem("tarefaMensagem","erro","XP deve ficar entre 0 e 50.");return}
-  try{const r=await addDoc(collection(db,"tarefas"),{titulo:$("tarefaTitulo").value.trim(),turma:turma($("tarefaTurma").value),xp,prazo:$("tarefaPrazo").value||null,descricao:$("tarefaDescricao").value.trim(),aulaId:null,professorId:usuarioAtual.uid,professorEmail:usuarioAtual.email||"",ativa:true,criadoEm:serverTimestamp()});mensagem("tarefaMensagem","ok","Tarefa publicada. ID: "+r.id);e.target.reset();$("tarefaXp").value=10;await carregarTarefas();await atualizarPainel()}catch(err){console.error(err);mensagem("tarefaMensagem","erro","Erro ao publicar tarefa.")}
-});
-
-async function carregarTarefas(){const tb=$("tarefasTabela");tb.innerHTML='<tr><td colspan="5" class="vazio">Carregando...</td></tr>';try{const s=await getDocs(collection(db,"tarefas"));const a=[];s.forEach(d=>a.push({id:d.id,...d.data()}));a.sort((x,y)=>(y.criadoEm?.seconds||0)-(x.criadoEm?.seconds||0));tb.innerHTML="";a.slice(0,30).forEach(x=>tb.insertAdjacentHTML("beforeend",`<tr><td class="codigo">${escapeHtml(x.id)}</td><td>${escapeHtml(x.titulo)}</td><td>${escapeHtml(x.turma)}</td><td>${escapeHtml(x.xp??0)}</td><td>${escapeHtml(x.prazo||"-")}</td></tr>`));if(!a.length)tb.innerHTML='<tr><td colspan="5" class="vazio">Nenhuma tarefa cadastrada.</td></tr>'}catch(e){console.error(e);tb.innerHTML='<tr><td colspan="5" class="vazio">Erro ao carregar tarefas.</td></tr>'}}
-$("carregarTarefasBtn").addEventListener("click",carregarTarefas);
-
-$("buscarEntregasBtn").addEventListener("click",async()=>{const id=$("entregaTarefaId").value.trim(),tb=$("entregasTabela");if(!id){mensagem("entregaMensagem","erro","Digite o ID da tarefa.");return}tb.innerHTML='<tr><td colspan="4" class="vazio">Buscando...</td></tr>';try{const s=await getDocs(query(collection(db,"entregas"),where("tarefaId","==",id)));tb.innerHTML="";s.forEach(d=>{const x=d.data();tb.insertAdjacentHTML("beforeend",`<tr><td>${escapeHtml(x.alunoNome||x.alunoEmail||"-")}</td><td class="codigo">${escapeHtml(x.alunoId||"-")}</td><td>${escapeHtml(x.status||"entregue")}</td><td>${escapeHtml(dataBonita(x.entregueEm))}</td></tr>`)});if(s.empty)tb.innerHTML='<tr><td colspan="4" class="vazio">Nenhuma entrega encontrada.</td></tr>';mensagem("entregaMensagem","ok",s.size+" entrega(s) encontrada(s).") }catch(e){console.error(e);mensagem("entregaMensagem","erro","Erro ao buscar entregas.")}});
-
-async function buscarAlunos(){const s=await getDocs(collection(db,"usuarios"));const a=[];s.forEach(d=>{const x=d.data();if(x.tipo==="aluno")a.push({id:d.id,...x})});return a}
-
-$("carregarChamadaBtn").addEventListener("click",async()=>{const tr=turma($("chamadaTurma").value),lista=$("listaChamada");if(!tr){mensagem("chamadaMensagem","erro","Digite a turma.");return}lista.innerHTML='<div class="vazio">Carregando alunos...</div>';try{const a=(await buscarAlunos()).filter(x=>turma(x.turma)===tr).sort((x,y)=>String(x.nome||"").localeCompare(String(y.nome||""),"pt-BR"));lista.innerHTML="";a.forEach(x=>{const div=document.createElement("div");div.className="aluno-chamada";div.dataset.alunoId=x.id;div.dataset.alunoNome=x.nome||x.email||x.id;div.innerHTML=`<strong>${escapeHtml(x.nome||x.email||x.id)}</strong><select class="presenca"><option value="presente">Presente</option><option value="ausente">Ausente</option><option value="justificado">Justificado</option></select><input class="comportamento" placeholder="Comportamento / observacao">`;lista.appendChild(div)});if(!a.length)lista.innerHTML='<div class="vazio">Nenhum aluno desta turma encontrado.</div>';mensagem("chamadaMensagem","ok",a.length+" aluno(s) carregado(s).") }catch(e){console.error(e);lista.innerHTML='<div class="vazio">Erro ao carregar alunos.</div>'}});
-
-$("salvarChamadaBtn").addEventListener("click",async()=>{const tr=turma($("chamadaTurma").value),data=$("chamadaData").value,linhas=[...document.querySelectorAll("#listaChamada .aluno-chamada")];if(!tr||!data||!linhas.length){mensagem("chamadaMensagem","erro","Informe turma/data e carregue os alunos.");return}const registros=linhas.map(l=>({alunoId:l.dataset.alunoId,alunoNome:l.dataset.alunoNome,presenca:l.querySelector(".presenca").value,comportamento:l.querySelector(".comportamento").value.trim()}));try{await addDoc(collection(db,"chamadas"),{turma:tr,data,registros,professorId:usuarioAtual.uid,professorEmail:usuarioAtual.email||"",criadoEm:serverTimestamp()});mensagem("chamadaMensagem","ok","Chamada salva com "+registros.length+" registro(s).") }catch(e){console.error(e);mensagem("chamadaMensagem","erro","Erro ao salvar chamada.")}});
-
-async function carregarGuildas(){const tb=$("guildasTabela");tb.innerHTML='<tr><td colspan="5" class="vazio">Carregando...</td></tr>';try{const s=await getDocs(collection(db,"guildas")),a=[];s.forEach(d=>a.push({id:d.id,...d.data()}));tb.innerHTML="";a.forEach(x=>{const membros=Array.isArray(x.membros)?x.membros.length:Number(x.quantidadeMembros||0),st=x.status||"pendente";tb.insertAdjacentHTML("beforeend",`<tr><td><strong>${escapeHtml(x.nome||x.id)}</strong><div class="codigo">${escapeHtml(x.id)}</div></td><td>${escapeHtml(x.turma||"-")}</td><td>${membros}</td><td><span class="badge ${escapeHtml(st)}">${escapeHtml(st)}</span></td><td><button class="botao sucesso guilda-acao" data-id="${escapeHtml(x.id)}" data-status="aprovada">Aprovar</button> <button class="botao perigo guilda-acao" data-id="${escapeHtml(x.id)}" data-status="rejeitada">Rejeitar</button></td></tr>`)});if(!a.length)tb.innerHTML='<tr><td colspan="5" class="vazio">Nenhuma guilda encontrada.</td></tr>';document.querySelectorAll(".guilda-acao").forEach(b=>b.addEventListener("click",async()=>{try{await updateDoc(doc(db,"guildas",b.dataset.id),{status:b.dataset.status,revisadoPor:usuarioAtual.uid,revisadoEm:serverTimestamp()});mensagem("guildaMensagem","ok","Guilda atualizada para: "+b.dataset.status);await carregarGuildas();await atualizarPainel()}catch(e){console.error(e);mensagem("guildaMensagem","erro","Nao foi possivel atualizar a guilda.")}}))}catch(e){console.error(e);tb.innerHTML='<tr><td colspan="5" class="vazio">Erro ao carregar guildas.</td></tr>'}}
-$("carregarGuildasBtn").addEventListener("click",carregarGuildas);
-
-async function carregarRanking(){const tr=turma($("rankingTurma").value);try{const a=(await buscarAlunos()).filter(x=>!tr||turma(x.turma)===tr).sort((x,y)=>Number(y.xp||0)-Number(x.xp||0)),tb=$("rankingTabela");tb.innerHTML="";a.forEach((x,i)=>tb.insertAdjacentHTML("beforeend",`<tr><td>${i+1}</td><td>${escapeHtml(x.nome||x.email||x.id)}</td><td>${escapeHtml(x.turma||"-")}</td><td>${escapeHtml(x.xp||0)}</td><td><input class="xp-input" type="number" min="1" max="50" value="10" id="xp-${escapeHtml(x.id)}"> <button class="botao dar-xp" data-id="${escapeHtml(x.id)}">Dar XP</button></td></tr>`));if(!a.length)tb.innerHTML='<tr><td colspan="5" class="vazio">Nenhum aluno encontrado.</td></tr>';document.querySelectorAll(".dar-xp").forEach(b=>b.addEventListener("click",async()=>{const id=b.dataset.id,v=Number($("xp-"+id).value);if(!Number.isFinite(v)||v<1||v>50){mensagem("rankingMensagem","erro","Use de 1 a 50 XP.");return}try{await updateDoc(doc(db,"usuarios",id),{xp:increment(v)});await addDoc(collection(db,"xpHistorico"),{alunoId:id,valor:v,professorId:usuarioAtual.uid,professorEmail:usuarioAtual.email||"",criadoEm:serverTimestamp()});mensagem("rankingMensagem","ok",v+" XP concedidos.");await carregarRanking();await carregarGlobal()}catch(e){console.error(e);mensagem("rankingMensagem","erro","Erro ao conceder XP.")}}))}catch(e){console.error(e);mensagem("rankingMensagem","erro","Erro ao carregar ranking.")}}
-async function carregarGlobal(){const tb=$("globalTabela");tb.innerHTML='<tr><td colspan="5" class="vazio">Carregando...</td></tr>';try{const a=(await buscarAlunos()).sort((x,y)=>Number(y.xp||0)-Number(x.xp||0));tb.innerHTML="";a.forEach((x,i)=>tb.insertAdjacentHTML("beforeend",`<tr><td>${i+1}</td><td>${escapeHtml(x.nome||x.email||x.id)}</td><td>${escapeHtml(x.turma||"-")}</td><td>${escapeHtml(x.escolaId||"-")}</td><td>${escapeHtml(x.xp||0)}</td></tr>`));if(!a.length)tb.innerHTML='<tr><td colspan="5" class="vazio">Nenhum aluno encontrado.</td></tr>'}catch(e){console.error(e);tb.innerHTML='<tr><td colspan="5" class="vazio">Erro ao carregar ranking global.</td></tr>'}}
-$("carregarRankingBtn").addEventListener("click",carregarRanking);$("carregarGlobalBtn").addEventListener("click",carregarGlobal);
-
-$("comunicaForm").addEventListener("submit",async e=>{e.preventDefault();try{const r=await addDoc(collection(db,"comunicacoes"),{destino:$("comunicaDestino").value.trim()||"todos",titulo:$("comunicaTitulo").value.trim(),mensagem:$("comunicaMensagemTexto").value.trim(),professorId:usuarioAtual.uid,professorEmail:usuarioAtual.email||"",criadoEm:serverTimestamp()});mensagem("comunicaMensagem","ok","Mensagem enviada. ID: "+r.id);e.target.reset()}catch(err){console.error(err);mensagem("comunicaMensagem","erro","Erro ao enviar mensagem.")}});
-
-$("totemForm").addEventListener("submit",async e=>{e.preventDefault();const c=codigo(8);try{const r=await addDoc(collection(db,"totens"),{codigo:c,titulo:$("totemTitulo").value.trim(),turma:turma($("totemTurma").value),tarefaId:$("totemTarefaId").value.trim()||null,tipo:$("totemTipo").value,descricao:$("totemDescricao").value.trim(),ativo:true,professorId:usuarioAtual.uid,criadoEm:serverTimestamp()});mensagem("totemMensagem","ok","Totem criado. ID: "+r.id+" | Codigo: "+c);e.target.reset()}catch(err){console.error(err);mensagem("totemMensagem","erro","Erro ao criar totem.")}});
-
-$("gerarTokenBtn").addEventListener("click",async()=>{const tipo=$("tokenTipo").value,val=Number($("tokenValidade").value);if(!Number.isFinite(val)||val<1||val>1440){mensagem("tokenMensagem","erro","Validade entre 1 e 1440 minutos.");return}const token=codigo(12),expiraEm=Date.now()+val*60000;try{const r=await addDoc(collection(db,"tokens"),{token,tipo,expiraEm,usado:false,professorId:usuarioAtual.uid,criadoEm:serverTimestamp()});mensagem("tokenMensagem","ok","Token: "+token+" | ID: "+r.id)}catch(e){console.error(e);mensagem("tokenMensagem","erro","Erro ao gerar token.")}});
-
-$("relatorioForm").addEventListener("submit",async e=>{e.preventDefault();try{const r=await addDoc(collection(db,"relatorios"),{tipo:$("relatorioTipo").value,referencia:$("relatorioTurma").value.trim(),texto:$("relatorioTexto").value.trim(),professorId:usuarioAtual.uid,professorEmail:usuarioAtual.email||"",criadoEm:serverTimestamp()});mensagem("relatorioMensagem","ok","Relatorio enviado. ID: "+r.id);e.target.reset()}catch(err){console.error(err);mensagem("relatorioMensagem","erro","Erro ao enviar relatorio.")}});
-
-$("avisoForm").addEventListener("submit",async e=>{e.preventDefault();try{const r=await addDoc(collection(db,"avisos"),{titulo:$("avisoTitulo").value.trim(),turma:turma($("avisoTurma").value)||"TODOS",mensagem:$("avisoTexto").value.trim(),notificar:true,professorId:usuarioAtual.uid,professorEmail:usuarioAtual.email||"",criadoEm:serverTimestamp()});mensagem("avisoMensagem","ok","Aviso publicado. ID: "+r.id);e.target.reset();await atualizarPainel()}catch(err){console.error(err);mensagem("avisoMensagem","erro","Erro ao publicar aviso.")}});
-
-async function contar(nome){return (await getDocs(collection(db,nome))).size}
-async function atualizarPainel(){try{const [tarefas,avisos,alunos,gs]=await Promise.all([contar("tarefas"),contar("avisos"),buscarAlunos(),getDocs(collection(db,"guildas"))]);let pend=0;gs.forEach(d=>{const x=d.data();if(!x.status||x.status==="pendente")pend++});$("metricaTarefas").textContent=tarefas;$("metricaAlunos").textContent=alunos.length;$("metricaGuildas").textContent=pend;$("metricaAvisos").textContent=avisos}catch(e){console.error(e);$("statusFirebase").textContent="Firebase: erro de permissao ou conexao"}}
-$("atualizarTudoBtn").addEventListener("click",async()=>{$("statusFirebase").textContent="Firebase: atualizando...";await Promise.allSettled([atualizarPainel(),carregarTarefas(),carregarGuildas(),carregarGlobal()]);$("statusFirebase").textContent="Firebase: conectado"});
-
-$("aulaData").valueAsDate=new Date();$("chamadaData").valueAsDate=new Date();
+<script
+  src="https://vlibras.gov.br/app/vlibras-plugin.js"
+>
 </script>
 
-<!----------Web Speech API--------------------->
 
 <script>
-const lerPagina=document.getElementById("lerPagina"),lerSelecionado=document.getElementById("lerSelecionado"),pararLeitura=document.getElementById("pararLeitura");
-function falar(texto){if(!("speechSynthesis" in window)){alert("Seu navegador nao suporta leitura por voz.");return}speechSynthesis.cancel();const fala=new SpeechSynthesisUtterance(texto);fala.lang="pt-BR";fala.rate=1;fala.pitch=1;speechSynthesis.speak(fala)}
-lerPagina.addEventListener("click",()=>falar(document.getElementById("conteudo").innerText));
-lerSelecionado.addEventListener("click",()=>{const t=getSelection().toString().trim();if(!t){alert("Selecione algum texto primeiro.");return}falar(t)});
-pararLeitura.addEventListener("click",()=>speechSynthesis.cancel());
+
+if (
+  window.VLibras
+) {
+
+  new window.VLibras.Widget(
+    "https://vlibras.gov.br/app"
+  );
+
+}
+
 </script>
 
+
+<!----------Javascript da pagina--------------------->
+
+<script
+  type="module"
+  src="js/Index.js"
+>
+</script>
+
+
 </body>
-</html>
+
+  </html>
