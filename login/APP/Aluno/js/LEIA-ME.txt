@@ -1,0 +1,4 @@
+Boa tarde/noite:
+ Essa parte visual foi feita com a AI, mas antes de falar que tudo aqui é 100% AI foi usado créditos do Chatgpt plus e a configuração manual do firebase.Além que os Json também foram humanos.
+Se não houvesse uso de AI/Prompt esse projeto levaria +Anos mesmo com varias pessoas ajudando.
+Além disso a AI é ferramenta para acelerar o trabalho todo código ta todo organizado com edições humanas e sera anexado um txt explicando as funções do codigo.
