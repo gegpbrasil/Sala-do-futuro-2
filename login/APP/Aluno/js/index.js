@@ -2085,10 +2085,18 @@ async function carregarNotas() {
     return;
   }
 
-  tabela.innerHTML =
-    '<tr><td colspan="2">Carregando...</td></tr>';
+  tabela.innerHTML = `
+    <tr>
+      <td colspan="5">
+        Carregando notas...
+      </td>
+    </tr>
+  `;
+
 
   try {
+
+    // ---------- Documento de notas do aluno ----------
 
     const notaRef = doc(
       db,
@@ -2096,47 +2104,141 @@ async function carregarNotas() {
       usuarioAtual.uid
     );
 
+
     const notaDoc =
       await getDoc(notaRef);
 
+
+    // ---------- Nenhuma nota encontrada ----------
+
     if (!notaDoc.exists()) {
 
-      tabela.innerHTML =
-        '<tr><td colspan="2">Nenhuma nota registrada.</td></tr>';
+      tabela.innerHTML = `
+        <tr>
+          <td colspan="5">
+            Nenhuma nota registrada.
+          </td>
+        </tr>
+      `;
 
       return;
     }
 
+
+    // ---------- Dados ----------
+
     const notas =
       notaDoc.data();
 
+
+    // ---------- Nome bonito das matérias ----------
+
     const nomesMaterias = {
-      matematica: "Matemática",
-      portugues: "Português",
-      ciencias: "Ciências",
-      historia: "História",
-      geografia: "Geografia",
-      ingles: "Inglês",
-      arte: "Arte",
-      edFisica: "Educação Física",
-      tecnologia: "Tecnologia"
+
+      portugues:
+        "Português",
+
+      arte:
+        "Arte",
+
+      matematica:
+        "Matemática",
+
+      ciencias:
+        "Ciências",
+
+      ingles:
+        "Inglês",
+
+      historia:
+        "História",
+
+      geografia:
+        "Geografia",
+
+      educacaoFisica:
+        "Educação Física",
+
+      tecnologia:
+        "Tecnologia"
+
     };
 
-    tabela.innerHTML =
-      Object.entries(notas)
-        .map(([materia, nota]) => `
-          <tr>
-            <td>
-              ${textoSeguro(
-                nomesMaterias[materia] || materia
-              )}
-            </td>
 
-            <td>
-              ${textoSeguro(nota)}
-            </td>
-          </tr>
-        `)
+    // ---------- Ordem das matérias ----------
+
+    const ordemMaterias = [
+
+      "portugues",
+
+      "arte",
+
+      "matematica",
+
+      "ciencias",
+
+      "ingles",
+
+      "historia",
+
+      "geografia",
+
+      "educacaoFisica",
+
+      "tecnologia"
+
+    ];
+
+
+    // ---------- Criar linhas ----------
+
+    tabela.innerHTML =
+      ordemMaterias
+        .map(materia => {
+
+          const dados =
+            notas[materia] || {};
+
+
+          return `
+
+            <tr>
+
+              <td>
+                ${textoSeguro(
+                  nomesMaterias[materia]
+                )}
+              </td>
+
+              <td>
+                ${textoSeguro(
+                  dados.b1 ?? "-"
+                )}
+              </td>
+
+              <td>
+                ${textoSeguro(
+                  dados.b2 ?? "-"
+                )}
+              </td>
+
+              <td>
+                ${textoSeguro(
+                  dados.b3 ?? "-"
+                )}
+              </td>
+
+              <td>
+                ${textoSeguro(
+                  dados.b4 ?? "-"
+                )}
+              </td>
+
+            </tr>
+
+          `;
+
+        })
         .join("");
 
   }
@@ -2148,8 +2250,14 @@ async function carregarNotas() {
       erro
     );
 
-    tabela.innerHTML =
-      '<tr><td colspan="2">Erro ao carregar notas.</td></tr>';
+
+    tabela.innerHTML = `
+      <tr>
+        <td colspan="5">
+          Erro ao carregar notas.
+        </td>
+      </tr>
+    `;
 
   }
 
