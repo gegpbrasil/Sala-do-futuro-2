@@ -102,9 +102,11 @@ const rotas = {
   // Deixe vazio ate decidir
   // a integracao real.
 
-  tarefaSP: "",
+  tarefaSP: "Plataformas
+/tarefasp.html",
 
-  redacaoSP: "",
+  redacaoSP: "Plataformas
+/redaçaosp.html",
 
 
   matific:
