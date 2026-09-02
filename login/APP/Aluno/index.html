@@ -1,1317 +1,348 @@
-﻿<!DOCTYPE html>
-
+<!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1d5a9e">
 
 <!----------Titulo e bombas invisiveis pro usuario---------->
-
-  <title>
-    Área do Aluno | Sala do Futuro V2
-  </title>
-
+  <title>Área do Aluno | Sala do Futuro V2</title>
 
 <!----------CSS---------->
-
-  <link
-    rel="stylesheet"
-    href="css/index.css"
-  >
-
+  <link rel="stylesheet" href="css/index.css">
 </head>
-
-
 <body>
 
-
-<div
-  class="app"
-  id="conteudo"
->
-
+<div class="app" id="conteudo">
 
 <!========================================
 MENU LATERAL
 ========================================>
-
-
-<aside class="menu">
-
-
-<!----------Marca---------->
-
-<div class="marca">
-
-  <div class="marca-icone">
-    SF
+<aside class="menu" id="menuLateral">
+  <div class="marca">
+    <div class="marca-icone" aria-hidden="true">SF</div>
+    <div>
+      <strong>Sala do Futuro</strong>
+      <small>Área do aluno</small>
+    </div>
   </div>
 
-  <div>
+  <nav class="menu-navegacao" aria-label="Menu do aluno">
+    <button class="menu-botao ativo" data-pagina="inicio"><span class="menu-icone">⌂</span>Início</button>
+    <button class="menu-botao" data-pagina="tarefas"><span class="menu-icone">✓</span>Atividades <span class="contador-menu discreto" id="contadorTarefasMenu">0</span></button>
+    <button class="menu-botao" data-pagina="notas"><span class="menu-icone">N</span>Boletim e Avaliações</button>
+    <button class="menu-botao" data-pagina="agenda"><span class="menu-icone">A</span>Agenda</button>
+    <button class="menu-botao" data-pagina="mensagens"><span class="menu-icone">M</span>Mensagens <span class="contador-menu" id="contadorMensagensMenu">0</span></button>
+    <button class="menu-botao" data-pagina="progresso"><span class="menu-icone">XP</span>Progressão</button>
+    <button class="menu-botao" data-pagina="pesquisa"><span class="menu-icone">P</span>Pesquisa</button>
+    <button class="menu-botao" data-pagina="carteirinha"><span class="menu-icone">C</span>Carteirinha do estudante</button>
+    <button class="menu-botao" data-pagina="perfil"><span class="menu-icone">U</span>Perfil</button>
+    <button class="menu-botao" data-pagina="plataformas"><span class="menu-icone">+</span>Plataformas</button>
+    <button class="menu-botao" data-pagina="configuracoes"><span class="menu-icone">⚙</span>Configurações</button>
+  </nav>
 
-    <strong>
-      Sala do Futuro
-    </strong>
-
-    <small>
-      Área do aluno
-    </small>
-
+  <div class="menu-rodape">
+    <button id="sairBtn">Sair da conta</button>
   </div>
-
-</div>
-
-
-<!----------Navegacao---------->
-
-<nav
-  class="menu-navegacao"
-  aria-label="Menu do aluno"
->
-
-
-<button
-  class="menu-botao ativo"
-  data-pagina="inicio"
->
-
-  <span class="menu-icone">
-    ◻
-  </span>
-
-  Inicio
-
-</button>
-
-
-<button
-  class="menu-botao"
-  data-pagina="notas"
->
-
-  <span class="menu-icone">
-    N
-  </span>
-
-  Boletim e Avaliações
-
-</button>
-
-
-<button
-  class="menu-botao"
-  data-pagina="agenda"
->
-
-  <span class="menu-icone">
-    A
-  </span>
-
-  Agenda
-
-</button>
-
-
-<button
-  class="menu-botao"
-  data-pagina="mensagens"
->
-
-  <span class="menu-icone">
-    M
-  </span>
-
-  Mensagens
-
-  <span
-    class="contador-menu"
-    id="contadorMensagensMenu"
-  >
-    0
-  </span>
-
-</button>
-
-
-<button
-  class="menu-botao"
-  data-pagina="pesquisa"
->
-
-  <span class="menu-icone">
-    P
-  </span>
-
-  Pesquisa
-
-</button>
-
-
-<button
-  class="menu-botao"
-  data-pagina="carteirinha"
->
-
-  <span class="menu-icone">
-    C
-  </span>
-
-  Carteirinha do estudante
-
-</button>
-
-
-<button
-  class="menu-botao"
-  data-pagina="perfil"
->
-
-  <span class="menu-icone">
-    U
-  </span>
-
-  Perfil
-
-</button>
-
-
-<button
-  class="menu-botao"
-  data-pagina="plataformas"
->
-
-  <span class="menu-icone">
-    +
-  </span>
-
-  Plataformas
-
-</button>
-
-
-<button
-  class="menu-botao"
-  data-pagina="configuracoes"
->
-
-  <span class="menu-icone">
-    ⚙
-  </span>
-
-  Configurações
-
-</button>
-
-
-</nav>
-
-
-<!----------Sair---------->
-
-<div class="menu-rodape">
-
-  <button id="sairBtn">
-
-    Sair da conta
-
-  </button>
-
-</div>
-
-
 </aside>
-
 
 <!========================================
 CONTEUDO
 ========================================>
-
-
 <main class="conteudo">
 
-
 <!----------Topo---------->
-
 <header class="topo">
+  <div class="topo-esquerda">
+    <button class="menu-mobile" id="menuMobileBtn" aria-label="Abrir ou fechar menu">☰</button>
+    <button class="voltar-topo" id="voltarInicioBtn" aria-label="Voltar para o início">‹</button>
+  </div>
 
-
-<div class="topo-esquerda">
-
-  <button
-    class="voltar-topo"
-    id="voltarInicioBtn"
-    aria-label="Voltar para o início"
-  >
-
-    ‹
-
-  </button>
-
-</div>
-
-
-<div class="topo-usuario">
-
-
-<div class="notificacao">
-
-  <span>
-    🔔
-  </span>
-
-  <strong id="contadorNotificacoes">
-    0
-  </strong>
-
-</div>
-
-
-<div
-  class="avatar pequeno"
-  id="avatarTopo"
->
-
-  AL
-
-</div>
-
-
-<strong id="nomeTopo">
-
-  Aluno
-
-</strong>
-
-
-</div>
-
-
+  <div class="topo-usuario">
+    <button class="notificacao" id="abrirNotificacoesBtn" aria-label="Abrir mensagens">
+      <span aria-hidden="true">🔔</span>
+      <strong id="contadorNotificacoes">0</strong>
+    </button>
+    <div class="avatar pequeno" id="avatarTopo">AL</div>
+    <strong id="nomeTopo">Aluno</strong>
+  </div>
 </header>
-
 
 <!========================================
 INICIO
 ========================================>
-
-
-<section
-  class="pagina ativa"
-  id="pagina-inicio"
->
-
-
-<!----------Saudacao---------->
-
-<div class="cabecalho-aluno">
-
-
-<div
-  class="avatar grande"
-  id="avatarPrincipal"
->
-
-  AL
-
-</div>
-
-
-<div>
-
-  <h1>
-
-    Olá,
-    <span id="nomeAluno">
-      Aluno
-    </span>
-
-  </h1>
-
-
-  <p id="turmaAluno">
-
-    Turma não carregada
-
-  </p>
-
-
-  <p id="escolaAluno">
-
-    Escola não carregada
-
-  </p>
-
-</div>
-
-
-</div>
-
-
-<!----------Cards principais---------->
-
-<div class="grade-resumo">
-
-
-<article class="resumo-card pendencias">
-
-  <strong
-    class="numero"
-    id="quantidadePendencias"
-  >
-
-    0
-
-  </strong>
-
-  <p>
-    Pendências
-  </p>
-
-</article>
-
-
-<article class="resumo-card mensagens">
-
-  <strong
-    class="numero"
-    id="quantidadeMensagens"
-  >
-
-    0
-
-  </strong>
-
-  <p>
-    Mensagens
-  </p>
-
-</article>
-
-
-<article class="resumo-card faltas">
-
-
-<div>
-
-  <strong
-    class="numero"
-    id="quantidadeFaltas"
-  >
-
-    0
-
-  </strong>
-
-  <p>
-    Faltas
-  </p>
-
-</div>
-
-
-<div class="frase-presenca">
-
-  Sua presença é
-
-  <strong>
-    muito importante.
-  </strong>
-
-</div>
-
-
-</article>
-
-
-<article
-  class="resumo-card boletim"
-  id="abrirNotasCard"
->
-
-  <strong class="boletim-titulo">
-
-    Boletim
-
-  </strong>
-
-  <span>
-
-    e Avaliações
-
-  </span>
-
-</article>
-
-
-</div>
-
-
-<!----------Aviso de pesquisa---------->
-
-<div class="barra-pesquisa">
-
-  Não há
-
-  <strong>
-    pesquisas
-  </strong>
-
-  a serem respondidas.
-
-</div>
-
+<section class="pagina ativa" id="pagina-inicio">
+  <div class="cabecalho-aluno">
+    <div class="avatar grande" id="avatarPrincipal">AL</div>
+    <div>
+      <h1>Olá, <span id="nomeAluno">Aluno</span></h1>
+      <p id="turmaAluno">Turma não carregada</p>
+      <p id="escolaAluno">Escola não carregada</p>
+    </div>
+  </div>
+
+  <div class="grade-resumo">
+    <button class="resumo-card pendencias" data-abrir-pagina="tarefas">
+      <strong class="numero" id="quantidadePendencias">0</strong>
+      <p>Pendências</p>
+    </button>
+
+    <button class="resumo-card mensagens" data-abrir-pagina="mensagens">
+      <strong class="numero" id="quantidadeMensagens">0</strong>
+      <p>Mensagens</p>
+    </button>
+
+    <article class="resumo-card faltas">
+      <div>
+        <strong class="numero" id="quantidadeFaltas">0</strong>
+        <p>Faltas</p>
+      </div>
+      <div class="frase-presenca">Sua presença é <strong>muito importante.</strong></div>
+    </article>
+
+    <button class="resumo-card boletim" id="abrirNotasCard">
+      <strong class="boletim-titulo">Boletim</strong>
+      <span>e Avaliações</span>
+    </button>
+  </div>
+
+  <div class="grade-home-secundaria">
+    <article class="card-mini">
+      <span>XP atual</span>
+      <strong id="xpHome">0 XP</strong>
+      <button class="link-simples" data-abrir-pagina="progresso">Ver progressão</button>
+    </article>
+
+    <article class="card-mini">
+      <span>Próxima atividade</span>
+      <strong id="proximaTarefaHome">Nenhuma pendência</strong>
+      <button class="link-simples" data-abrir-pagina="tarefas">Abrir atividades</button>
+    </article>
+  </div>
+
+  <div class="barra-pesquisa" id="avisoPesquisaHome">Não há <strong>pesquisas</strong> a serem respondidas.</div>
+
+  <section class="plataformas-home">
+    <div class="titulo-plataformas">
+      <div>
+        <h2>Plataformas de Aprendizagem</h2>
+        <span id="turmaPlataformas">Visualizando sua turma</span>
+      </div>
+      <button class="link-simples" data-abrir-pagina="plataformas">Ver todas</button>
+    </div>
+
+    <div class="grade-plataformas">
+      <button class="plataforma-card" data-plataforma="tarefa-sp"><span class="plataforma-logo azul">T</span><strong>Tarefa SP</strong></button>
+      <button class="plataforma-card" data-plataforma="redacao-sp"><span class="plataforma-logo rosa">R</span><strong>Redação Paulista</strong></button>
+      <button class="plataforma-card" data-plataforma="matific"><span class="plataforma-logo laranja">M</span><strong>Matific</strong></button>
+      <button class="plataforma-card" data-plataforma="elefante"><span class="plataforma-logo verde">E</span><strong>Elefante Letrado</strong></button>
+      <button class="plataforma-card" data-plataforma="ef"><span class="plataforma-logo azul">EF</span><strong>EF Inglês</strong></button>
+      <button class="plataforma-card" data-abrir-pagina="notas"><span class="plataforma-logo roxo">N</span><strong>Ver minhas notas</strong></button>
+    </div>
+  </section>
+</section>
 
 <!========================================
-PLATAFORMAS NA HOME
+ATIVIDADES INTERNAS
 ========================================>
+<section class="pagina" id="pagina-tarefas">
+  <div class="pagina-cabecalho">
+    <h1>Atividades</h1>
+    <p>Atividades internas publicadas pelos professores.</p>
+  </div>
 
+  <div class="filtros-linha">
+    <button class="filtro-tarefa ativo" data-filtro-tarefa="pendentes">Pendentes</button>
+    <button class="filtro-tarefa" data-filtro-tarefa="entregues">Entregues</button>
+    <button class="filtro-tarefa" data-filtro-tarefa="todas">Todas</button>
+  </div>
 
-<section class="plataformas-home">
-
-
-<div class="titulo-plataformas">
-
-
-<div>
-
-  <h2>
-    Plataformas de Aprendizagem
-  </h2>
-
-  <span id="turmaPlataformas">
-    Visualizando sua turma
-  </span>
-
-</div>
-
-
-<button
-  class="link-simples"
-  data-abrir-pagina="plataformas"
->
-
-  Ver todas
-
-</button>
-
-
-</div>
-
-
-<div class="grade-plataformas">
-
-
-<!----------Tarefa SP---------->
-
-<button
-  class="plataforma-card"
-  data-plataforma="tarefa-sp"
->
-
-  <span class="plataforma-logo azul">
-    T
-  </span>
-
-  <strong>
-    Tarefa SP
-  </strong>
-
-  <span
-    class="bolinha"
-    id="contadorTarefas"
-  >
-    0
-  </span>
-
-</button>
-
-
-<!----------Redacao Paulista---------->
-
-<button
-  class="plataforma-card"
-  data-plataforma="redacao-sp"
->
-
-  <span class="plataforma-logo rosa">
-    R
-  </span>
-
-  <strong>
-    Redação Paulista
-  </strong>
-
-</button>
-
-
-<!----------Matific---------->
-
-<button
-  class="plataforma-card"
-  data-plataforma="matific"
->
-
-  <span class="plataforma-logo laranja">
-    M
-  </span>
-
-  <strong>
-    Matific
-  </strong>
-
-</button>
-
-
-<!----------Elefante Letrado---------->
-
-<button
-  class="plataforma-card"
-  data-plataforma="elefante"
->
-
-  <span class="plataforma-logo verde">
-    E
-  </span>
-
-  <strong>
-    Elefante Letrado
-  </strong>
-
-</button>
-
-
-<!----------EF---------->
-
-<button
-  class="plataforma-card"
-  data-plataforma="ef"
->
-
-  <span class="plataforma-logo azul">
-    EF
-  </span>
-
-  <strong>
-    EF Inglês
-  </strong>
-
-</button>
-
-
-<!----------Notas---------->
-
-<button
-  class="plataforma-card"
-  data-abrir-pagina="notas"
->
-
-  <span class="plataforma-logo roxo">
-    N
-  </span>
-
-  <strong>
-    Ver minhas notas
-  </strong>
-
-</button>
-
-
-</div>
-
-
+  <div id="listaTarefas" class="lista-cartoes">
+    <p class="vazio">Carregando atividades...</p>
+  </div>
 </section>
-
-
-</section>
-
 
 <!========================================
 NOTAS
 ========================================>
+<section class="pagina" id="pagina-notas">
+  <div class="pagina-cabecalho">
+    <h1>Boletim e Avaliações</h1>
+    <p>Consulte suas notas registradas.</p>
+  </div>
 
-
-<section
-  class="pagina"
-  id="pagina-notas"
->
-
-
-<div class="pagina-cabecalho">
-
-  <h1>
-    Boletim e Avaliações
-  </h1>
-
-  <p>
-    Consulte suas notas registradas.
-  </p>
-
-</div>
-
-
-<div class="card-conteudo">
-
-
-<div class="tabela-wrap">
-
-<table>
-
-
-<thead>
-
-<tr>
-
-  <th>
-    Disciplina
-  </th>
-
-  <th>
-    Bimestre
-  </th>
-
-  <th>
-    Nota
-  </th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="tabelaNotas">
-
-<tr>
-
-  <td colspan="3">
-    Carregando notas...
-  </td>
-
-</tr>
-
-</tbody>
-
-
-</table>
-
-</div>
-
-
-</div>
-
-
+  <div class="card-conteudo">
+    <div class="tabela-wrap">
+      <table>
+        <thead><tr><th>Disciplina</th><th>Bimestre</th><th>Nota</th></tr></thead>
+        <tbody id="tabelaNotas"><tr><td colspan="3">Carregando notas...</td></tr></tbody>
+      </table>
+    </div>
+  </div>
 </section>
-
 
 <!========================================
 AGENDA
 ========================================>
-
-
-<section
-  class="pagina"
-  id="pagina-agenda"
->
-
-
-<div class="pagina-cabecalho">
-
-  <h1>
-    Agenda
-  </h1>
-
-  <p>
-    Eventos e compromissos escolares.
-  </p>
-
-</div>
-
-
-<div
-  class="card-conteudo"
-  id="agendaConteudo"
->
-
-
-<!----------DATA.JSON DA AGENDA FICA COM VOCE---------->
-
-<p class="vazio">
-
-  Nenhum evento carregado.
-
-</p>
-
-
-</div>
-
-
+<section class="pagina" id="pagina-agenda">
+  <div class="pagina-cabecalho">
+    <h1>Agenda</h1>
+    <p>Eventos e compromissos escolares do protótipo.</p>
+  </div>
+  <div class="card-conteudo" id="agendaConteudo"><p class="vazio">Carregando agenda...</p></div>
 </section>
-
 
 <!========================================
 MENSAGENS
 ========================================>
+<section class="pagina" id="pagina-mensagens">
+  <div class="pagina-cabecalho">
+    <h1>Mensagens</h1>
+    <p>Comunicados da escola e publicação diária do aluno.</p>
+  </div>
 
+  <div class="grade-dupla">
+    <article class="card-conteudo">
+      <h2>Comunica SP e mural</h2>
+      <div id="listaMensagens"><p class="vazio">Carregando mensagens...</p></div>
+    </article>
 
-<section
-  class="pagina"
-  id="pagina-mensagens"
->
+    <article class="card-conteudo">
+      <h2>Enviar atividade do dia</h2>
+      <p>Cada aluno pode enviar <strong>1 publicação por dia</strong> pelo Realtime Database.</p>
 
+      <div class="aviso-config" id="avisoRealtime" hidden>
+        Realtime Database ainda não configurado. O restante do aplicativo continua funcionando.
+      </div>
 
-<div class="pagina-cabecalho">
-
-  <h1>
-    Mensagens
-  </h1>
-
-  <p>
-    Comunicados e envio da atividade diária.
-  </p>
-
-</div>
-
-
-<div class="grade-dupla">
-
-
-<!----------Mensagens recebidas---------->
-
-<article class="card-conteudo">
-
-
-<h2>
-  Comunica SP
-</h2>
-
-
-<div id="listaMensagens">
-
-  <p class="vazio">
-    Carregando mensagens...
-  </p>
-
-</div>
-
-
-</article>
-
-
-<!----------Atividade diaria---------->
-
-<article class="card-conteudo">
-
-
-<h2>
-  Enviar atividade do dia
-</h2>
-
-
-<p>
-
-  Cada aluno pode enviar
-
-  <strong>
-    1 atividade por dia.
-  </strong>
-
-</p>
-
-
-<form id="atividadeDiaForm">
-
-
-<div class="campo">
-
-  <label for="atividadeTitulo">
-
-    Título
-
-  </label>
-
-  <input
-    id="atividadeTitulo"
-    required
-    maxlength="100"
-    placeholder="Ex.: Atividade de Matemática"
-  >
-
-</div>
-
-
-<div class="campo">
-
-  <label for="atividadeTexto">
-
-    Descrição
-
-  </label>
-
-  <textarea
-    id="atividadeTexto"
-    required
-    maxlength="1000"
-    placeholder="Descreva a atividade enviada"
-  ></textarea>
-
-</div>
-
-
-<button
-  class="botao-primario"
-  type="submit"
->
-
-  Enviar atividade
-
-</button>
-
-
-<div
-  class="mensagem-status"
-  id="atividadeMensagem"
->
-</div>
-
-
-</form>
-
-
-</article>
-
-
-</div>
-
-
+      <form id="atividadeDiaForm">
+        <div class="campo">
+          <label for="atividadeTitulo">Título</label>
+          <input id="atividadeTitulo" required maxlength="100" placeholder="Ex.: Atividade de Matemática">
+        </div>
+        <div class="campo">
+          <label for="atividadeTexto">Descrição</label>
+          <textarea id="atividadeTexto" required maxlength="1000" placeholder="Descreva a atividade enviada"></textarea>
+        </div>
+        <button class="botao-primario" type="submit">Enviar atividade</button>
+        <div class="mensagem-status" id="atividadeMensagem" aria-live="polite"></div>
+      </form>
+    </article>
+  </div>
 </section>
 
+<!========================================
+PROGRESSAO
+========================================>
+<section class="pagina" id="pagina-progresso">
+  <div class="pagina-cabecalho">
+    <h1>Minha progressão</h1>
+    <p>XP representa participação e progressão no projeto. Não substitui nota.</p>
+  </div>
+
+  <div class="card-progresso">
+    <div>
+      <span>XP</span>
+      <strong id="xpProgresso">0</strong>
+    </div>
+    <div>
+      <span>Nível</span>
+      <strong id="nivelProgresso">1</strong>
+    </div>
+    <div>
+      <span>Próximo nível</span>
+      <strong id="proximoNivelProgresso">100 XP</strong>
+    </div>
+  </div>
+
+  <div class="card-conteudo">
+    <h2>Progresso do nível</h2>
+    <div class="barra-xp" aria-label="Progresso de XP"><div id="barraXpPreenchida"></div></div>
+    <p id="textoXp">0 de 100 XP</p>
+  </div>
+</section>
 
 <!========================================
 PESQUISAS
 ========================================>
-
-
-<section
-  class="pagina"
-  id="pagina-pesquisa"
->
-
-
-<div class="pagina-cabecalho">
-
-  <h1>
-    Pesquisa
-  </h1>
-
-</div>
-
-
-<div class="card-conteudo">
-
-  <p class="vazio">
-
-    Não há pesquisas
-    a serem respondidas.
-
-  </p>
-
-</div>
-
-
+<section class="pagina" id="pagina-pesquisa">
+  <div class="pagina-cabecalho"><h1>Pesquisa</h1></div>
+  <div class="card-conteudo"><p class="vazio">Não há pesquisas a serem respondidas.</p></div>
 </section>
-
 
 <!========================================
-CARTEIRA DO CLT/Estudante...
+CARTEIRINHA
 ========================================>
-
-
-<section
-  class="pagina"
-  id="pagina-carteirinha"
->
-
-
-<div class="pagina-cabecalho">
-
-  <h1>
-    Carteirinha do estudante
-  </h1>
-
-</div>
-
-
-<div class="carteirinha">
-
-
-<div
-  class="avatar grande"
-  id="avatarCarteirinha"
->
-
-  AL
-
-</div>
-
-
-<div>
-
-  <h2 id="carteirinhaNome">
-    Aluno
-  </h2>
-
-  <p id="carteirinhaTurma">
-    Turma
-  </p>
-
-  <p id="carteirinhaId">
-    ID
-  </p>
-
-</div>
-
-
-</div>
-
-
+<section class="pagina" id="pagina-carteirinha">
+  <div class="pagina-cabecalho"><h1>Carteirinha do estudante</h1></div>
+  <div class="carteirinha">
+    <div class="avatar grande" id="avatarCarteirinha">AL</div>
+    <div>
+      <h2 id="carteirinhaNome">Aluno</h2>
+      <p id="carteirinhaTurma">Turma</p>
+      <p id="carteirinhaEscola">Escola</p>
+      <p id="carteirinhaId">ID</p>
+    </div>
+  </div>
 </section>
-
 
 <!========================================
-PERFIS
+PERFIL
 ========================================>
-
-
-<section
-  class="pagina"
-  id="pagina-perfil"
->
-
-
-<div class="pagina-cabecalho">
-
-  <h1>
-    Perfil
-  </h1>
-
-</div>
-
-
-<div class="card-conteudo">
-
-
-<div class="perfil-linha">
-
-  <strong>
-    Nome
-  </strong>
-
-  <span id="perfilNome">
-    -
-  </span>
-
-</div>
-
-
-<div class="perfil-linha">
-
-  <strong>
-    E-mail
-  </strong>
-
-  <span id="perfilEmail">
-    -
-  </span>
-
-</div>
-
-
-<div class="perfil-linha">
-
-  <strong>
-    Turma
-  </strong>
-
-  <span id="perfilTurma">
-    -
-  </span>
-
-</div>
-
-
-<div class="perfil-linha">
-
-  <strong>
-    Escola
-  </strong>
-
-  <span id="perfilEscola">
-    -
-  </span>
-
-</div>
-
-
-</div>
-
-
+<section class="pagina" id="pagina-perfil">
+  <div class="pagina-cabecalho"><h1>Perfil</h1></div>
+  <div class="card-conteudo">
+    <div class="perfil-linha"><strong>Nome</strong><span id="perfilNome">-</span></div>
+    <div class="perfil-linha"><strong>E-mail</strong><span id="perfilEmail">-</span></div>
+    <div class="perfil-linha"><strong>Turma</strong><span id="perfilTurma">-</span></div>
+    <div class="perfil-linha"><strong>Escola</strong><span id="perfilEscola">-</span></div>
+    <div class="perfil-linha"><strong>XP</strong><span id="perfilXp">0</span></div>
+  </div>
 </section>
-
 
 <!========================================
 PLATAFORMAS
 ========================================>
-
-
-<section
-  class="pagina"
-  id="pagina-plataformas"
->
-
-
-<div class="pagina-cabecalho">
-
-  <h1>
-    Plataformas de Aprendizagem
-  </h1>
-
-</div>
-
-
-<div class="grade-plataformas grande">
-
-
-<button
-  class="plataforma-card"
-  data-plataforma="tarefa-sp"
->
-
-  <span class="plataforma-logo azul">
-    T
-  </span>
-
-  <strong>
-    Tarefa SP
-  </strong>
-
-</button>
-
-
-<button
-  class="plataforma-card"
-  data-plataforma="redacao-sp"
->
-
-  <span class="plataforma-logo rosa">
-    R
-  </span>
-
-  <strong>
-    Redação Paulista
-  </strong>
-
-</button>
-
-
-<button
-  class="plataforma-card"
-  data-plataforma="matific"
->
-
-  <span class="plataforma-logo laranja">
-    M
-  </span>
-
-  <strong>
-    Matific
-  </strong>
-
-</button>
-
-
-<button
-  class="plataforma-card"
-  data-plataforma="elefante"
->
-
-  <span class="plataforma-logo verde">
-    E
-  </span>
-
-  <strong>
-    Elefante Letrado
-  </strong>
-
-</button>
-
-
-<button
-  class="plataforma-card"
-  data-plataforma="ef"
->
-
-  <span class="plataforma-logo azul">
-    EF
-  </span>
-
-  <strong>
-    EF Inglês
-  </strong>
-
-</button>
-
-
-<button
-  class="plataforma-card"
-  data-abrir-pagina="notas"
->
-
-  <span class="plataforma-logo roxo">
-    N
-  </span>
-
-  <strong>
-    Ver minhas notas
-  </strong>
-
-</button>
-
-
-</div>
-
-
+<section class="pagina" id="pagina-plataformas">
+  <div class="pagina-cabecalho"><h1>Plataformas de Aprendizagem</h1></div>
+  <div class="grade-plataformas grande">
+    <button class="plataforma-card" data-plataforma="tarefa-sp"><span class="plataforma-logo azul">T</span><strong>Tarefa SP</strong></button>
+    <button class="plataforma-card" data-plataforma="redacao-sp"><span class="plataforma-logo rosa">R</span><strong>Redação Paulista</strong></button>
+    <button class="plataforma-card" data-plataforma="matific"><span class="plataforma-logo laranja">M</span><strong>Matific</strong></button>
+    <button class="plataforma-card" data-plataforma="elefante"><span class="plataforma-logo verde">E</span><strong>Elefante Letrado</strong></button>
+    <button class="plataforma-card" data-plataforma="ef"><span class="plataforma-logo azul">EF</span><strong>EF Inglês</strong></button>
+    <button class="plataforma-card" data-abrir-pagina="notas"><span class="plataforma-logo roxo">N</span><strong>Ver minhas notas</strong></button>
+  </div>
 </section>
-
 
 <!========================================
 CONFIGURACOES
 ========================================>
-
-
-<section
-  class="pagina"
-  id="pagina-configuracoes"
->
-
-
-<div class="pagina-cabecalho">
-
-  <h1>
-    Configurações
-  </h1>
-
-</div>
-
-
-<div class="card-conteudo">
-
-
-<h2>
-  Acessibilidade
-</h2>
-
-
-<div class="acoes-acessibilidade">
-
-
-<button id="lerPagina">
-
-  Ler página
-
-</button>
-
-
-<button id="lerSelecionado">
-
-  Ler selecionado
-
-</button>
-
-
-<button id="pararLeitura">
-
-  Parar leitura
-
-</button>
-
-
-</div>
-
-
-</div>
-
-
+<section class="pagina" id="pagina-configuracoes">
+  <div class="pagina-cabecalho"><h1>Configurações</h1></div>
+  <div class="card-conteudo">
+    <h2>Acessibilidade</h2>
+    <div class="acoes-acessibilidade">
+      <button id="lerPagina">Ler página</button>
+      <button id="lerSelecionado">Ler selecionado</button>
+      <button id="pararLeitura">Parar leitura</button>
+    </div>
+  </div>
 </section>
 
-
 </main>
-
-
 </div>
-
 
 <!========================================
 VLIBRAS
 ========================================>
-
-
-<div
-  vw
-  class="enabled"
->
-
-
-<div
-  vw-access-button
-  class="active"
->
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
 </div>
-
-
-<div vw-plugin-wrapper>
-
-  <div class="vw-plugin-top-wrapper">
-  </div>
-
-</div>
-
-
-</div>
-
-
-<script
-  src="https://vlibras.gov.br/app/vlibras-plugin.js"
->
-</script>
-
-
-<script>
-
-if (window.VLibras) {
-
-  new window.VLibras.Widget(
-    "https://vlibras.gov.br/app"
-  );
-
-}
-
-</script>
-
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 
 <!----------JS da pagina---------->
-
-<script
-  type="module"
-  src="js/Index.js"
->
-</script>
-
-
+<script type="module" src="js/index.js"></script>
 </body>
-
 </html>
