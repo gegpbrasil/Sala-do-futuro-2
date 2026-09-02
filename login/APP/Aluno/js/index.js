@@ -2073,6 +2073,10 @@ async function atualizarPublicacaoDiaria() {
 NOTAS
 ========================================*/
 
+/*========================================
+NOTAS
+========================================*/
+
 async function carregarNotas() {
 
   if (!usuarioAtual) {
@@ -2087,16 +2091,13 @@ async function carregarNotas() {
 
   tabela.innerHTML = `
     <tr>
-      <td colspan="5">
-        Carregando notas...
-      </td>
+      <td colspan="5">Carregando notas...</td>
     </tr>
   `;
 
-
   try {
 
-    // ---------- Documento de notas do aluno ----------
+    // ---------- Buscar notas do aluno ----------
 
     const notaRef = doc(
       db,
@@ -2104,12 +2105,9 @@ async function carregarNotas() {
       usuarioAtual.uid
     );
 
+    const notaDoc = await getDoc(notaRef);
 
-    const notaDoc =
-      await getDoc(notaRef);
-
-
-    // ---------- Nenhuma nota encontrada ----------
+    // ---------- Verificar documento ----------
 
     if (!notaDoc.exists()) {
 
@@ -2124,132 +2122,65 @@ async function carregarNotas() {
       return;
     }
 
+    const notas = notaDoc.data();
 
-    // ---------- Dados ----------
-
-    const notas =
-      notaDoc.data();
-
-
-    // ---------- Nome bonito das matérias ----------
+    // ---------- Matérias ----------
 
     const nomesMaterias = {
-
-      portugues:
-        "Português",
-
-      arte:
-        "Arte",
-
-      matematica:
-        "Matemática",
-
-      ciencias:
-        "Ciências",
-
-      ingles:
-        "Inglês",
-
-      historia:
-        "História",
-
-      geografia:
-        "Geografia",
-
-      educacaoFisica:
-        "Educação Física",
-
-      tecnologia:
-        "Tecnologia"
-
+      portugues: "Português",
+      arte: "Arte",
+      matematica: "Matemática",
+      ciencias: "Ciências",
+      ingles: "Inglês",
+      historia: "História",
+      geografia: "Geografia",
+      educacaoFisica: "Educação Física",
+      tecnologia: "Tecnologia"
     };
 
-
-    // ---------- Ordem das matérias ----------
-
     const ordemMaterias = [
-
       "portugues",
-
       "arte",
-
       "matematica",
-
       "ciencias",
-
       "ingles",
-
       "historia",
-
       "geografia",
-
       "educacaoFisica",
-
       "tecnologia"
-
     ];
 
+    // ---------- Montar tabela ----------
 
-    // ---------- Criar linhas ----------
+    tabela.innerHTML = ordemMaterias
+      .map(materia => {
 
-    tabela.innerHTML =
-      ordemMaterias
-        .map(materia => {
+        const dados = notas[materia] || {};
 
-          const dados =
-            notas[materia] || {};
+        const b1 = dados["1ºBimestre"] ?? "-";
+        const b2 = dados["2ºBimestre"] ?? "-";
+        const b3 = dados["3ºBimestre"] ?? "-";
+        const b4 = dados["4ºBimestre"] ?? "-";
 
+        return `
+          <tr>
+            <td>${textoSeguro(nomesMaterias[materia])}</td>
+            <td>${textoSeguro(b1)}</td>
+            <td>${textoSeguro(b2)}</td>
+            <td>${textoSeguro(b3)}</td>
+            <td>${textoSeguro(b4)}</td>
+          </tr>
+        `;
 
-          return `
+      })
+      .join("");
 
-            <tr>
-
-              <td>
-                ${textoSeguro(
-                  nomesMaterias[materia]
-                )}
-              </td>
-
-              <td>
-                ${textoSeguro(
-                  dados[1º Bimestre] ?? "-"
-                )}
-              </td>
-
-              <td>
-                ${textoSeguro(
-                  dados[2º Bimestre] ?? "-"
-                )}
-              </td>
-
-              <td>
-                ${textoSeguro(
-                  dados[3º Bimestre] ?? "-"
-                )}
-              </td>
-
-              <td>
-                ${textoSeguro(
-                  dados.[4º Bimestre] ?? "-"
-                )}
-              </td>
-
-            </tr>
-
-          `;
-
-        })
-        .join("");
-
-  }
-
-  catch (erro) {
+  } catch (erro) {
 
     console.error(
       "Erro ao carregar notas:",
       erro
     );
-
 
     tabela.innerHTML = `
       <tr>
