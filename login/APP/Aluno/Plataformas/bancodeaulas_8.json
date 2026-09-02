@@ -1,53 +1,158 @@
 {
- "materias": {
-   "matematica": {
-     "3ºBimestre": [
-       {"id":1
-        "titulo": "Explorando a equivalência de áreas de figuras planas"
-        "explicacao_1": ""
-        "questao_1_1": ""
-        "opções":{ 
-         "a_1": ""
-         "b_1": ""
-         "c_1": ""
-         "d_1": ""
-           },	
-        "Reposta_1_1":"a"
-         },
-          {"id":"2"
-        "titulo": ""
-        "questao_1_2": ""
-        "opções":{ 
-         "a": ""
-         "b": ""
-         "c": ""
-         "d": ""
-           },
-        "Reposta_1_2":""
-         }, 
-            ]
-              }
-                }
-         "Lígua Portuguesa":{
-           "3ºBimestre": [
-        {"id":"1-pt"
-        "titulo": ""
-        "questao_1_2": ""
-        "opções":{ 
-         "a1-pt": ""
-         "b1-pt": ""
-         "c1-pt": ""
-         "d1-pt": ""
-           },
-        "Reposta1-pt":""
-
-            ]
-             }          "a1-pt": ""
-         "b1-pt": ""
-         "c1-pt": ""
-         "d1-pt": ""
-           },
-        "Reposta1-pt":""
-
-            ]
-             } 
+  "config": {
+    "metaConclusao": 75,
+    "metaPontos": 90,
+    "pontosDesafioDiario": 10,
+    "componentes": [
+      "Matemática",
+      "Língua Portuguesa",
+      "Inglês",
+      "História",
+      "Educação Financeira",
+      "Ciências"
+    ]
+  },
+  "quinzenas": [
+    {
+      "id": "2026-Q17",
+      "inicio": "2026-08-24",
+      "fim": "2026-09-06",
+      "nome": "24/08 - 06/09"
+    },
+    {
+      "id": "2026-Q18",
+      "inicio": "2026-09-07",
+      "fim": "2026-09-20",
+      "nome": "07/09 - 20/09"
+    }
+  ],
+  "atividades": [
+    {
+      "id": "MAT-001",
+      "titulo": "Razão e proporção",
+      "componente": "Matemática",
+      "turmas": ["8A"],
+      "quinzena": "2026-Q17",
+      "pontos": 20,
+      "tipo": "multiplaEscolha",
+      "descricao": "Resolva uma questão de razão e proporção.",
+      "enunciado": "Uma sala possui 30 alunos. Se 18 são meninas, quantos são meninos?",
+      "alternativas": [
+        { "id": "a", "texto": "10" },
+        { "id": "b", "texto": "12" },
+        { "id": "c", "texto": "18" },
+        { "id": "d", "texto": "20" }
+      ],
+      "respostaCorreta": "b",
+      "feedbackCorreto": "Boa! 30 - 18 = 12.",
+      "feedbackErro": "Revise a diferença entre o total de alunos e a quantidade de meninas."
+    },
+    {
+      "id": "POR-001",
+      "titulo": "Interpretação de texto",
+      "componente": "Língua Portuguesa",
+      "turmas": ["8A"],
+      "quinzena": "2026-Q17",
+      "pontos": 20,
+      "tipo": "texto",
+      "descricao": "Produza uma resposta curta.",
+      "enunciado": "Explique com suas palavras por que o título de um texto pode ajudar o leitor a prever o assunto.",
+      "maximoCaracteres": 800
+    },
+    {
+      "id": "ING-001",
+      "titulo": "Simple Present",
+      "componente": "Inglês",
+      "turmas": ["8A"],
+      "quinzena": "2026-Q17",
+      "pontos": 15,
+      "tipo": "multiplaEscolha",
+      "descricao": "Identifique a frase correta.",
+      "enunciado": "Qual frase está correta no Simple Present?",
+      "alternativas": [
+        { "id": "a", "texto": "She play football." },
+        { "id": "b", "texto": "She plays football." },
+        { "id": "c", "texto": "She playing football." }
+      ],
+      "respostaCorreta": "b",
+      "feedbackCorreto": "Correto.",
+      "feedbackErro": "Observe a conjugação do verbo para she, he e it."
+    },
+    {
+      "id": "HIS-001",
+      "titulo": "Brasil Império",
+      "componente": "História",
+      "turmas": ["8A"],
+      "quinzena": "2026-Q17",
+      "pontos": 20,
+      "tipo": "texto",
+      "descricao": "Questão de História.",
+      "enunciado": "Explique uma característica do período imperial brasileiro.",
+      "maximoCaracteres": 1000
+    },
+    {
+      "id": "FIN-001",
+      "titulo": "Planejamento financeiro",
+      "componente": "Educação Financeira",
+      "turmas": ["8A"],
+      "quinzena": "2026-Q17",
+      "pontos": 15,
+      "tipo": "multiplaEscolha",
+      "descricao": "Conceitos básicos de organização financeira.",
+      "enunciado": "Qual atitude ajuda no planejamento financeiro?",
+      "alternativas": [
+        { "id": "a", "texto": "Gastar todo o dinheiro assim que receber." },
+        { "id": "b", "texto": "Registrar receitas e despesas." },
+        { "id": "c", "texto": "Ignorar os gastos pequenos." }
+      ],
+      "respostaCorreta": "b",
+      "feedbackCorreto": "Correto.",
+      "feedbackErro": "Planejamento financeiro depende de conhecer receitas e despesas."
+    },
+    {
+      "id": "CIE-001",
+      "titulo": "Sistema respiratório",
+      "componente": "Ciências",
+      "turmas": ["8A"],
+      "quinzena": "2026-Q17",
+      "pontos": 20,
+      "tipo": "multiplaEscolha",
+      "descricao": "Conhecimentos sobre o corpo humano.",
+      "enunciado": "Qual órgão é responsável pelas principais trocas gasosas do sistema respiratório?",
+      "alternativas": [
+        { "id": "a", "texto": "Estômago" },
+        { "id": "b", "texto": "Pulmões" },
+        { "id": "c", "texto": "Rins" }
+      ],
+      "respostaCorreta": "b",
+      "feedbackCorreto": "Correto.",
+      "feedbackErro": "Revise a função dos pulmões."
+    }
+  ],
+  "desafiosFallback": [
+    {
+      "titulo": "Desafio rápido de Matemática",
+      "componente": "Matemática",
+      "enunciado": "Qual é o resultado de 3 × (4 + 2)?",
+      "alternativas": ["18", "14", "12", "24"],
+      "respostaCorreta": 0,
+      "explicacao": "Primeiro resolvemos o que está entre parênteses: 4 + 2 = 6. Depois, 3 × 6 = 18."
+    },
+    {
+      "titulo": "Desafio rápido de Ciências",
+      "componente": "Ciências",
+      "enunciado": "Qual processo permite às plantas produzir alimento usando luz?",
+      "alternativas": ["Fotossíntese", "Respiração", "Digestão", "Evaporação"],
+      "respostaCorreta": 0,
+      "explicacao": "Na fotossíntese, as plantas usam luz, água e gás carbônico para produzir matéria orgânica."
+    },
+    {
+      "titulo": "Desafio rápido de História",
+      "componente": "História",
+      "enunciado": "Qual fonte histórica é um exemplo de fonte escrita?",
+      "alternativas": ["Carta", "Estátua", "Fotografia", "Ferramenta de pedra"],
+      "respostaCorreta": 0,
+      "explicacao": "Uma carta registra informações por meio da escrita e pode ser usada como fonte histórica."
+    }
+  ]
+}
