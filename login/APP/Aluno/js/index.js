@@ -96,28 +96,12 @@ ROTAS
 ========================================*/
 
 const rotas = {
-
   login: "../../loginal.html",
-
-  // Deixe vazio ate decidir
-  // a integracao real.
-
-  tarefaSP: "Plataformas
-/tarefasp.html",
-
-  redacaoSP: "Plataformas
-/redaçaosp.html",
-
-
-  matific:
-    "https://www.matific.com/bra/pt-br/home/",
-
-  ef:
-    "https://www.ef.com.br/",
-
-  elefante:
-    "https://www.elefanteletrado.com.br/"
-
+  tarefaSP: "Plataformas/tarefasp.html",
+  redacaoSP: "Plataformas/redacaosp.html",
+  matific: "https://www.matific.com/bra/pt-br/home/",
+  ef: "https://www.ef.com.br/",
+  elefante: "https://www.elefanteletrado.com.br/"
 };
 
 
