@@ -2076,125 +2076,68 @@ NOTAS
 async function carregarNotas() {
 
   if (!usuarioAtual) {
-
     return;
-
   }
 
-
-  const tabela =
-    $("tabelaNotas");
-
+  const tabela = $("tabelaNotas");
 
   if (!tabela) {
-
     return;
-
   }
 
-
   tabela.innerHTML =
-    '<tr><td colspan="3">Carregando...</td></tr>';
-
+    '<tr><td colspan="2">Carregando...</td></tr>';
 
   try {
 
-    const resultado =
-      await getDocs(
-
-        query(
-
-          collection(
-            db,
-            "notas"
-          ),
-
-          where(
-            "alunoId",
-            "==",
-            usuarioAtual.uid
-          )
-
-        )
-
-      );
-
-
-    const notas = [];
-
-
-    resultado.forEach(
-      item => {
-
-        notas.push({
-
-          id: item.id,
-
-          ...item.data()
-
-        });
-
-      }
+    const notaRef = doc(
+      db,
+      "notas",
+      usuarioAtual.uid
     );
 
+    const notaDoc =
+      await getDoc(notaRef);
 
-    if (!notas.length) {
+    if (!notaDoc.exists()) {
 
       tabela.innerHTML =
-        '<tr><td colspan="3">Nenhuma nota registrada.</td></tr>';
+        '<tr><td colspan="2">Nenhuma nota registrada.</td></tr>';
 
       return;
-
     }
 
+    const notas =
+      notaDoc.data();
 
-    notas.sort(
-      (a, b) =>
-
-        String(
-          a.disciplina || ""
-        )
-          .localeCompare(
-            String(
-              b.disciplina || ""
-            ),
-            "pt-BR"
-          )
-    );
-
+    const nomesMaterias = {
+      matematica: "Matemática",
+      portugues: "Português",
+      ciencias: "Ciências",
+      historia: "História",
+      geografia: "Geografia",
+      ingles: "Inglês",
+      arte: "Arte",
+      edFisica: "Educação Física",
+      tecnologia: "Tecnologia"
+    };
 
     tabela.innerHTML =
-      notas.map(
-        nota => `
-
+      Object.entries(notas)
+        .map(([materia, nota]) => `
           <tr>
-
             <td>
               ${textoSeguro(
-                nota.disciplina
-                || "-"
+                nomesMaterias[materia] || materia
               )}
             </td>
 
             <td>
-              ${textoSeguro(
-                nota.bimestre
-                || "-"
-              )}
+              ${textoSeguro(nota)}
             </td>
-
-            <td>
-              ${textoSeguro(
-                nota.nota
-                ?? "-"
-              )}
-            </td>
-
           </tr>
-
-        `
-      )
-      .join("");
+        `)
+        .join("");
 
   }
 
@@ -2205,14 +2148,12 @@ async function carregarNotas() {
       erro
     );
 
-
     tabela.innerHTML =
-      '<tr><td colspan="3">Erro ao carregar notas.</td></tr>';
+      '<tr><td colspan="2">Erro ao carregar notas.</td></tr>';
 
   }
 
 }
-
 
 /*========================================
 AGENDA PELO DATA.JSON
