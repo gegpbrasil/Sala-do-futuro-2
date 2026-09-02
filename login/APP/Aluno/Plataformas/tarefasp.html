@@ -1,1 +1,264 @@
-﻿
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarefa SP | Sala do Futuro 2</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<a class="pular-conteudo" href="#conteudoPrincipal">Pular para o conteúdo</a>
+
+<header class="topo">
+  <div class="topo-esquerda">
+    <a class="botao-voltar" href="../index.html" aria-label="Voltar para a Área do Aluno">←</a>
+    <div>
+      <strong>Sala do Futuro 2</strong>
+      <small>Área do Aluno</small>
+    </div>
+  </div>
+
+  <div class="topo-acoes">
+    <button id="btnContraste" class="botao-topo" type="button">Contraste</button>
+    <button id="btnLibras" class="botao-topo" type="button">VLibras</button>
+
+    <div class="usuario-topo" aria-label="Usuário conectado">
+      <div class="avatar" id="avatarAluno">A</div>
+      <span id="nomeAlunoTopo">Aluno</span>
+    </div>
+  </div>
+</header>
+
+<main id="conteudoPrincipal" class="conteudo">
+
+  <section class="titulo-pagina">
+    <div class="icone-tarefa">✓</div>
+    <div>
+      <h1>Tarefa SP</h1>
+      <p>Atividades, pontuação, desafio diário, ranking e guildas.</p>
+    </div>
+  </section>
+
+  <section class="resumo-pontos">
+    <div class="resumo-card">
+      <span>🚀 Meus pontos</span>
+      <strong id="meusPontosSemana">0</strong>
+      <small>nesta semana</small>
+    </div>
+
+    <div class="resumo-card">
+      <span>✅ Atividades</span>
+      <strong id="atividadesConcluidas">0</strong>
+      <small>concluídas</small>
+    </div>
+
+    <div class="resumo-card">
+      <span>🏅 Medalha</span>
+      <strong id="statusMedalha">Bloqueada</strong>
+      <small id="textoMedalha">Complete as metas</small>
+    </div>
+  </section>
+
+  <!--====================================================
+  DESAFIO DIÁRIO COM GEMINI
+  =====================================================-->
+  <section class="secao desafio-diario-secao" aria-labelledby="tituloDesafioDiario">
+    <div class="secao-cabecalho">
+      <div>
+        <h2 id="tituloDesafioDiario">Desafio diário</h2>
+        <p>Uma questão gerada pelo Gemini e salva no Firebase para não mudar durante o dia.</p>
+      </div>
+      <span id="desafioData" class="etiqueta">Hoje</span>
+    </div>
+
+    <div id="desafioDiario" class="desafio-diario">
+      <div class="carregando">Preparando o desafio de hoje...</div>
+    </div>
+  </section>
+
+  <!--====================================================
+  FILTROS
+  =====================================================-->
+  <section class="painel-filtros">
+    <div class="campo-filtro">
+      <label for="filtroTurma">Turmas</label>
+      <select id="filtroTurma">
+        <option value="todas">Todas as Turmas</option>
+      </select>
+    </div>
+
+    <div class="campo-filtro">
+      <label for="filtroStatus">Status</label>
+      <select id="filtroStatus">
+        <option value="a-fazer">A Fazer</option>
+        <option value="entregues">Entregues</option>
+        <option value="todos">Todas</option>
+      </select>
+    </div>
+
+    <div class="campo-filtro">
+      <label for="filtroComponente">Componente</label>
+      <select id="filtroComponente">
+        <option value="todos">Todos os Componentes</option>
+      </select>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="secao-cabecalho">
+      <div>
+        <h2>Atividades</h2>
+        <p id="textoQuantidadeAtividades">Carregando...</p>
+      </div>
+    </div>
+
+    <div id="listaAtividades" class="lista-atividades">
+      <div class="carregando">Carregando atividades...</div>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="secao-cabecalho">
+      <div>
+        <h2>Painel de pontuação</h2>
+        <p>Seu desempenho durante a quinzena.</p>
+      </div>
+    </div>
+
+    <div class="painel-quinzena">
+      <div class="quinzena-topo">
+        <div>
+          <small>quinzena</small>
+          <h3 id="periodoQuinzena">-</h3>
+          <span id="turmaQuinzena">-</span>
+        </div>
+      </div>
+
+      <hr>
+      <h3>Pontos de tarefas</h3>
+
+      <div class="barra">
+        <div id="barraPontos" class="barra-preenchimento"></div>
+      </div>
+
+      <div class="barra-legenda">
+        <span>acumulados: <strong id="pontosAcumulados">0</strong></span>
+        <span>possíveis: <strong id="pontosPossiveis">0</strong></span>
+      </div>
+
+      <hr>
+      <h3>Metas</h3>
+
+      <div class="metas">
+        <div class="meta">
+          <div>
+            <strong>Concluir 75% das tarefas</strong>
+            <small id="metaConclusaoTexto">0%</small>
+          </div>
+          <div class="circulo-meta"><span id="metaConclusao">0%</span></div>
+        </div>
+
+        <div class="meta">
+          <div>
+            <strong>Acumular 90% dos pontos</strong>
+            <small id="metaPontosTexto">0%</small>
+          </div>
+          <div class="circulo-meta"><span id="metaPontos">0%</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao">
+    <h2>Premiação</h2>
+    <div class="premiacao-quinzena">
+      <div id="medalhaQuinzena" class="medalha">🏅</div>
+      <div>
+        <h3 id="tituloPremiacaoQuinzena">Medalha da Quinzena</h3>
+        <p id="descricaoPremiacaoQuinzena">Cumpra as metas para conquistar a medalha.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="secao-cabecalho">
+      <div>
+        <h2>Ranking</h2>
+        <p>Pontuação semanal dos alunos.</p>
+      </div>
+    </div>
+
+    <div class="tabela-wrap">
+      <table class="ranking">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Aluno</th>
+            <th>Turma</th>
+            <th>Pontos</th>
+          </tr>
+        </thead>
+        <tbody id="rankingCorpo">
+          <tr><td colspan="4">Carregando ranking...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="secao-cabecalho">
+      <div>
+        <h2>Guildas</h2>
+        <p>Grupos orientados por um professor.</p>
+      </div>
+    </div>
+
+    <div id="listaGuildas" class="lista-guildas">
+      <div class="carregando">Carregando guildas...</div>
+    </div>
+  </section>
+
+  <section class="secao">
+    <div class="secao-cabecalho">
+      <div>
+        <h2>Premiações</h2>
+        <p>Recompensas definidas pelos professores.</p>
+      </div>
+    </div>
+
+    <div id="listaPremiacoes" class="lista-premiacoes">
+      <div class="carregando">Carregando premiações...</div>
+    </div>
+  </section>
+
+</main>
+
+<!--====================================================
+MODAL DA ATIVIDADE
+=====================================================-->
+<div id="modalAtividade" class="modal" hidden>
+  <div class="modal-fundo" data-fechar-modal></div>
+
+  <section class="modal-conteudo" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+    <button id="fecharModal" class="fechar-modal" type="button" aria-label="Fechar atividade">×</button>
+
+    <span id="modalComponente" class="etiqueta">Componente</span>
+    <h2 id="modalTitulo">Atividade</h2>
+    <p id="modalDescricao"></p>
+    <div id="modalEnunciado" class="enunciado"></div>
+
+    <form id="formAtividade">
+      <div id="areaResposta"></div>
+      <button id="botaoEntregar" class="botao-principal" type="submit">Entregar atividade</button>
+    </form>
+
+    <div id="resultadoAtividade" class="resultado" aria-live="polite"></div>
+  </section>
+</div>
+
+<div id="avisoSistema" class="somente-leitor" aria-live="polite"></div>
+
+<script type="module" src="js/index.js"></script>
+</body>
+</html>
