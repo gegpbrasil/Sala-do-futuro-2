@@ -38,6 +38,8 @@ O fluxo essencial validado para demonstração inicial compreende:
 4. Correção automatizada com auxílio explicativo da IA.
 5. Atualização em tempo real de XP, níveis e métricas de determinação.
 
+ (pausa para almoço)
+
 ---
 ## Texto feito com o Gemini e com revisões/adições humanas.
  *aviso*: qualquer parte desse código esta sujeito por revisões de AI mesmo que boa parte seja humano.
