@@ -2212,25 +2212,25 @@ async function carregarNotas() {
 
               <td>
                 ${textoSeguro(
-                  dados.b1 ?? "-"
+                  dados[1º Bimestre] ?? "-"
                 )}
               </td>
 
               <td>
                 ${textoSeguro(
-                  dados.b2 ?? "-"
+                  dados[2º Bimestre] ?? "-"
                 )}
               </td>
 
               <td>
                 ${textoSeguro(
-                  dados.b3 ?? "-"
+                  dados[3º Bimestre] ?? "-"
                 )}
               </td>
 
               <td>
                 ${textoSeguro(
-                  dados.b4 ?? "-"
+                  dados.[4º Bimestre] ?? "-"
                 )}
               </td>
 
