@@ -1,0 +1,791 @@
+/*====================================================
+CONFIGURAÇÃO GERAL
+====================================================*/
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f6f8;
+  color: #263238;
+}
+
+/*====================================================
+ACESSIBILIDADE
+====================================================*/
+
+.pular-conteudo {
+  position: absolute;
+  top: -100px;
+  left: 10px;
+  background: #000;
+  color: #fff;
+  padding: 10px 16px;
+  z-index: 9999;
+}
+
+.pular-conteudo:focus {
+  top: 10px;
+}
+
+button,
+select,
+a,
+input,
+textarea {
+  font: inherit;
+}
+
+button:focus-visible,
+select:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 4px solid #ffb300;
+  outline-offset: 3px;
+}
+
+.somente-leitor {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+body.alto-contraste {
+  background: #000;
+  color: #fff;
+}
+
+body.alto-contraste .secao,
+body.alto-contraste .painel-filtros,
+body.alto-contraste .resumo-card,
+body.alto-contraste .painel-quinzena,
+body.alto-contraste .atividade-card,
+body.alto-contraste .guilda-card,
+body.alto-contraste .premiacao-card,
+body.alto-contraste .modal-conteudo,
+body.alto-contraste .desafio-card {
+  background: #111;
+  color: #fff;
+  border-color: #fff;
+}
+
+body.alto-contraste select,
+body.alto-contraste textarea {
+  background: #111;
+  color: #fff;
+}
+
+/*====================================================
+TOPO
+====================================================*/
+
+.topo {
+  height: 72px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 500;
+}
+
+.topo-esquerda,
+.topo-acoes,
+.usuario-topo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topo-esquerda div {
+  display: flex;
+  flex-direction: column;
+}
+
+.topo-esquerda small {
+  color: #777;
+}
+
+.botao-voltar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #1f3b64;
+  font-size: 24px;
+}
+
+.botao-topo {
+  border: 1px solid #ccd3da;
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #64b5f6;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/*====================================================
+CONTEÚDO
+====================================================*/
+
+.conteudo {
+  width: min(1180px, calc(100% - 40px));
+  margin: 30px auto 80px;
+}
+
+/*====================================================
+TÍTULO
+====================================================*/
+
+.titulo-pagina {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.titulo-pagina h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.titulo-pagina p {
+  margin: 5px 0 0;
+  color: #68737d;
+}
+
+.icone-tarefa {
+  width: 52px;
+  height: 52px;
+  border: 3px solid #203e72;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #20b486;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+/*====================================================
+RESUMO
+====================================================*/
+
+.resumo-pontos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.resumo-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  border: 1px solid #e1e5e9;
+}
+
+.resumo-card span,
+.resumo-card small,
+.resumo-card strong {
+  display: block;
+}
+
+.resumo-card strong {
+  font-size: 28px;
+  margin: 10px 0 4px;
+}
+
+/*====================================================
+DESAFIO DIÁRIO
+====================================================*/
+
+.desafio-diario-secao {
+  border-top: 4px solid #6c63ff;
+}
+
+.desafio-card {
+  border: 1px solid #dfe5ea;
+  border-radius: 14px;
+  padding: 20px;
+  background: #fbfbff;
+}
+
+.desafio-card h3 {
+  margin: 10px 0;
+}
+
+.desafio-card p {
+  line-height: 1.5;
+}
+
+.desafio-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.desafio-alternativas {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.desafio-alternativa {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  border: 1px solid #dce2e7;
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+  background: #fff;
+}
+
+.desafio-alternativa:hover {
+  background: #f4f6ff;
+}
+
+.desafio-acoes {
+  margin-top: 18px;
+}
+
+.desafio-resultado {
+  margin-top: 15px;
+  padding: 14px;
+  border-radius: 10px;
+}
+
+.desafio-resultado.ok {
+  background: #e4f7ed;
+  color: #086b40;
+}
+
+.desafio-resultado.erro {
+  background: #fff0ef;
+  color: #a03027;
+}
+
+.desafio-fonte {
+  color: #68737d;
+  font-size: 12px;
+}
+
+/*====================================================
+FILTROS
+====================================================*/
+
+.painel-filtros {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 25px;
+  border: 1px solid #e1e5e9;
+}
+
+.campo-filtro {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo-filtro label {
+  font-size: 14px;
+  color: #68737d;
+}
+
+.campo-filtro select {
+  border: 0;
+  background: #eceff1;
+  padding: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/*====================================================
+SEÇÕES
+====================================================*/
+
+.secao {
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid #e1e5e9;
+}
+
+.secao h2 {
+  margin-top: 0;
+}
+
+.secao-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.secao-cabecalho p {
+  color: #68737d;
+  margin: 5px 0 0;
+}
+
+/*====================================================
+ATIVIDADES
+====================================================*/
+
+.lista-atividades {
+  display: grid;
+  gap: 15px;
+}
+
+.atividade-card {
+  border: 1px solid #dfe5ea;
+  border-radius: 12px;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+}
+
+.atividade-card.entregue {
+  border-left: 5px solid #25ad76;
+}
+
+.atividade-card h3 {
+  margin: 7px 0;
+}
+
+.atividade-card p {
+  margin: 5px 0;
+  color: #64717d;
+}
+
+.atividade-acoes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.etiqueta {
+  display: inline-block;
+  width: fit-content;
+  padding: 5px 9px;
+  border-radius: 20px;
+  background: #e9eef5;
+  font-size: 12px;
+}
+
+.status-entregue {
+  background: #dff6ea;
+  color: #087747;
+}
+
+.status-pendente {
+  background: #fff3d6;
+  color: #8b5b00;
+}
+
+.botao-principal,
+.botao-secundario {
+  border: 0;
+  border-radius: 9px;
+  padding: 11px 16px;
+  cursor: pointer;
+}
+
+.botao-principal {
+  background: #1f5fa8;
+  color: #fff;
+}
+
+.botao-secundario {
+  background: #edf2f7;
+  color: #263238;
+}
+
+.botao-principal:disabled,
+.botao-secundario:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/*====================================================
+QUINZENA
+====================================================*/
+
+.painel-quinzena {
+  border: 1px solid #dce3e8;
+  border-bottom: 3px solid #59b994;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.quinzena-topo {
+  text-align: right;
+}
+
+.quinzena-topo small,
+.quinzena-topo span {
+  color: #6f7a84;
+}
+
+.quinzena-topo h3 {
+  margin: 5px 0;
+  font-size: 26px;
+}
+
+.barra {
+  height: 11px;
+  background: #d4dae0;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.barra-preenchimento {
+  height: 100%;
+  width: 0%;
+  background: #25b98b;
+  transition: width 0.3s ease;
+}
+
+.barra-legenda {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+.metas {
+  display: grid;
+  gap: 12px;
+}
+
+.meta {
+  background: #f5f6f7;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.meta small {
+  display: block;
+  margin-top: 5px;
+}
+
+.circulo-meta {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 8px solid #f0d8c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+/*====================================================
+MEDALHA
+====================================================*/
+
+.premiacao-quinzena {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.medalha {
+  width: 130px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+  background: #eef2f6;
+  clip-path: polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0 50%);
+  filter: grayscale(1);
+  opacity: 0.45;
+}
+
+.medalha.desbloqueada {
+  filter: none;
+  opacity: 1;
+}
+
+/*====================================================
+RANKING
+====================================================*/
+
+.tabela-wrap {
+  overflow-x: auto;
+}
+
+.ranking {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ranking th,
+.ranking td {
+  text-align: left;
+  padding: 13px;
+  border-bottom: 1px solid #e2e6ea;
+}
+
+.ranking tr.usuario-atual {
+  background: #eaf4ff;
+  font-weight: bold;
+}
+
+/*====================================================
+GUILDAS
+====================================================*/
+
+.lista-guildas {
+  display: grid;
+  gap: 18px;
+}
+
+.guilda-card {
+  border: 1px solid #dfe5ea;
+  border-radius: 13px;
+  padding: 20px;
+}
+
+.guilda-topo {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.guilda-pontos {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.guilda-membros {
+  margin-top: 18px;
+  display: grid;
+  gap: 8px;
+}
+
+.guilda-membro {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 12px;
+  background: #f4f6f8;
+  border-radius: 8px;
+}
+
+.trabalhos-guilda {
+  margin-top: 18px;
+}
+
+.trabalho-guilda {
+  padding: 12px;
+  margin-top: 8px;
+  border-left: 4px solid #5a83b4;
+  background: #f7f9fb;
+}
+
+/*====================================================
+PREMIAÇÕES
+====================================================*/
+
+.lista-premiacoes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.premiacao-card {
+  border: 1px solid #dde3e8;
+  border-radius: 12px;
+  padding: 18px;
+}
+
+.premiacao-card.desbloqueada {
+  border-color: #25ad76;
+  background: #f0fbf6;
+}
+
+/*====================================================
+MODAL
+====================================================*/
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal-fundo {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.modal-conteudo {
+  position: relative;
+  width: min(680px, calc(100% - 30px));
+  max-height: 88vh;
+  overflow-y: auto;
+  margin: 6vh auto;
+  background: #fff;
+  padding: 28px;
+  border-radius: 15px;
+  z-index: 1;
+}
+
+.fechar-modal {
+  position: absolute;
+  right: 15px;
+  top: 12px;
+  border: 0;
+  background: transparent;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.enunciado {
+  background: #f5f7f9;
+  border-radius: 10px;
+  padding: 18px;
+  margin: 18px 0;
+}
+
+.alternativa {
+  display: block;
+  padding: 12px;
+  border: 1px solid #dce2e7;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.alternativa input {
+  margin-right: 10px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 150px;
+  resize: vertical;
+  padding: 12px;
+  border: 1px solid #ccd3da;
+  border-radius: 9px;
+  margin-bottom: 15px;
+}
+
+.resultado {
+  margin-top: 20px;
+}
+
+.resultado.ok {
+  padding: 15px;
+  background: #e4f7ed;
+  color: #086b40;
+  border-radius: 9px;
+}
+
+.resultado.erro {
+  padding: 15px;
+  background: #fff0ef;
+  color: #a03027;
+  border-radius: 9px;
+}
+
+/*====================================================
+ESTADOS
+====================================================*/
+
+.carregando,
+.vazio {
+  padding: 30px;
+  text-align: center;
+  color: #68737d;
+}
+
+/*====================================================
+RESPONSIVO
+====================================================*/
+
+@media (max-width: 800px) {
+  .topo {
+    padding: 0 12px;
+  }
+
+  .botao-topo {
+    display: none;
+  }
+
+  .resumo-pontos,
+  .painel-filtros,
+  .lista-premiacoes {
+    grid-template-columns: 1fr;
+  }
+
+  .atividade-card {
+    grid-template-columns: 1fr;
+  }
+
+  .atividade-acoes {
+    flex-direction: row;
+  }
+
+  .guilda-topo {
+    flex-direction: column;
+  }
+
+  .premiacao-quinzena {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
